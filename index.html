@@ -37,7 +37,7 @@
     *{box-sizing:border-box}
     body{margin:0;min-width:320px;background:var(--paper);color:var(--ink);font-family:var(--font)}
     a{color:inherit}
-    .page{width:min(1140px,calc(100% - 32px));margin:0 auto;padding:28px 0 56px}
+    .page{width:min(1140px,calc(100% - 32px));margin:0 auto;padding:24px 0 56px}
     .topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:34px;padding:14px 0;border-bottom:1px solid var(--line)}
     .brand{display:flex;align-items:center;gap:12px;color:var(--navy);font-weight:900;text-decoration:none;font-size:15px}
     .brand-mark{width:42px;height:42px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid var(--line)}
@@ -75,6 +75,8 @@
     .cta-band h2{color:#fff;font-size:26px}
     .cta-band .section-lead{color:#c8e8f7;margin-bottom:0}
     .cta-band-inner{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}
+    .cta-band .btn.secondary{background:transparent;color:#fff;border-color:#fff}
+    .cta-band .btn.secondary:hover{background:rgba(255,255,255,.12);color:#fff;border-color:#fff}
     .faq-list{display:grid;gap:8px}
     details{border:1px solid var(--line);border-radius:8px;background:#fff;overflow:hidden}
     summary{padding:15px 18px;color:var(--navy);font-weight:800;font-size:14.5px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
@@ -82,6 +84,9 @@
     summary::after{content:"+";color:var(--sky);font-size:18px;line-height:1;flex-shrink:0}
     details[open] summary::after{content:"−"}
     details p{margin:0;padding:0 18px 18px;color:var(--muted);font-size:14px;line-height:1.65}
+    .data-usage-note{margin:18px 0 0;padding:16px 18px;border:1px solid var(--line);border-radius:8px;background:var(--paper);scroll-margin-top:24px}
+    .data-usage-note h2{font-size:17px;line-height:1.2;margin-bottom:8px}
+    .data-usage-note p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.65}
     .source-note{margin:18px 0 0;color:var(--muted);font-size:12px;line-height:1.6;font-style:italic}
     .blog-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
     .blog-link{display:flex;flex-direction:column;gap:5px;padding:16px;border:1px solid var(--line);border-radius:8px;background:#fff;text-decoration:none;transition:border-color .15s,box-shadow .15s}
@@ -103,76 +108,159 @@
     }
   </style>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "RealEstateAgent",
-        "@id": "https://myshahteam.com/#gaurang-shah",
-        "name": "Gaurang Shah - Team Shah Real Estate",
-        "url": "https://myshahteam.com/",
-        "telephone": "+1-647-892-2411",
-        "email": "mail@myshahteam.com",
-        "parentOrganization": {
-          "@type": "Organization",
-          "name": "Royal LePage Flower City Realty"
+  
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "RealEstateAgent",
+      "@id": "https://myshahteam.com/#gaurang-shah",
+      "name": "Gaurang Shah - Team Shah Real Estate",
+      "url": "https://myshahteam.com/",
+      "telephone": "+1-647-892-2411",
+      "email": "mail@myshahteam.com",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Royal LePage Flower City Realty"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Brampton"
         },
-        "areaServed": [
-          {"@type":"City","name":"Brampton"},
-          {"@type":"City","name":"Mississauga"},
-          {"@type":"City","name":"Toronto"},
-          {"@type":"Place","name":"Greater Toronto Area"}
-        ],
-        "knowsAbout": ["GTA housing market data","Brampton real estate","Mississauga real estate","Toronto real estate","Home buying","Home selling"]
+        {
+          "@type": "City",
+          "name": "Mississauga"
+        },
+        {
+          "@type": "City",
+          "name": "Toronto"
+        },
+        {
+          "@type": "Place",
+          "name": "Greater Toronto Area"
+        }
+      ],
+      "knowsAbout": [
+        "GTA housing market data",
+        "Brampton real estate",
+        "Mississauga real estate",
+        "Toronto real estate",
+        "Home buying",
+        "Home selling"
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://myshahteam.com/gta-housing-market-data/#dataset",
+      "name": "GTA Housing Market Data",
+      "description": "Housing market data including prices, inventory, days on market and trends for Brampton, Mississauga, Toronto and the Greater Toronto Area.",
+      "url": "https://myshahteam.com/gta-housing-market-data/",
+      "keywords": [
+        "GTA housing market data",
+        "Brampton real estate market",
+        "Mississauga real estate market",
+        "Toronto housing market",
+        "GTA home prices",
+        "months of inventory",
+        "days on market"
+      ],
+      "creator": {
+        "@type": "Organization",
+        "name": "Team Shah Real Estate",
+        "url": "https://myshahteam.com/"
       },
-      {
-        "@type": "Dataset",
-        "@id": "https://myshahteam.com/gta-housing-market-data/#dataset",
-        "name": "GTA Housing Market Data",
-        "description": "Housing market data including prices, inventory, days on market and trends for Brampton, Mississauga, Toronto and the Greater Toronto Area.",
-        "url": "https://myshahteam.com/gta-housing-market-data/",
-        "keywords": ["GTA housing market data","Brampton real estate market","Mississauga real estate market","Toronto housing market","GTA home prices","months of inventory","days on market"],
-        "creator": {"@type":"Organization","name":"Team Shah Real Estate","url":"https://myshahteam.com/"},
-        "spatialCoverage": {"@type":"Place","name":"Greater Toronto Area"},
-        "temporalCoverage": "2026",
-        "isAccessibleForFree": true
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "Greater Toronto Area"
       },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type":"ListItem","position":1,"name":"Home","item":"https://myshahteam.com/"},
-          {"@type":"ListItem","position":2,"name":"GTA Housing Market Data","item":"https://myshahteam.com/gta-housing-market-data/"}
-        ]
+      "temporalCoverage": "2026",
+      "isAccessibleForFree": true,
+      "license": {
+        "@type": "CreativeWork",
+        "name": "Team Shah Real Estate Data Usage Terms",
+        "url": "https://myshahteam.com/gta-housing-market-data/#data-usage"
       },
-      {
-        "@type": "FAQPage",
-        "@id": "https://myshahteam.com/gta-housing-market-data/#faq",
-        "mainEntity": [
-          {"@type":"Question","name":"What does GTA housing market data tell buyers?","acceptedAnswer":{"@type":"Answer","text":"It helps buyers understand price trends, inventory, days on market and how much choice may be available in different cities. This can help you decide where to search, how quickly to act and whether there may be room to negotiate."}},
-          {"@type":"Question","name":"What does market data tell sellers?","acceptedAnswer":{"@type":"Answer","text":"It helps sellers understand competition, buyer activity and pricing pressure. If inventory is rising or homes are taking longer to sell, pricing, preparation and presentation become more important."}},
-          {"@type":"Question","name":"Is Brampton a buyer's market or seller's market right now?","acceptedAnswer":{"@type":"Answer","text":"That depends on inventory, days on market, property type and price range. A city-wide number is useful, but a detached home, townhouse and condo can behave differently. Ask Team Shah Real Estate to review your specific property type and neighbourhood."}},
-          {"@type":"Question","name":"How should I compare average price, inventory and days on market?","acceptedAnswer":{"@type":"Answer","text":"Do not look at one number alone. Average price shows the broad direction, inventory shows how much choice buyers have, and days on market shows how quickly homes are moving. Together they give a more realistic picture of market conditions."}},
-          {"@type":"Question","name":"Should I use market data before making an offer?","acceptedAnswer":{"@type":"Answer","text":"Yes. Market data can help you understand whether a home is priced aggressively, fairly or high compared with current conditions. Your offer strategy should also consider recent comparable sales, property condition, competition and your financing comfort."}},
-          {"@type":"Question","name":"How often is this data updated?","acceptedAnswer":{"@type":"Answer","text":"Market data should be reviewed regularly because conditions can change from month to month. Before relying on the numbers for a purchase or sale decision, confirm the latest local trend with a real estate professional."}}
-        ]
-      }
-    ]
-  }
+      "citation": "Data sourced from publicly available TRREB Market Watch reports, released monthly by the Toronto Regional Real Estate Board.",
+      "isBasedOn": "https://trreb.ca/market-data/market-watch/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://myshahteam.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "GTA Housing Market Data",
+          "item": "https://myshahteam.com/gta-housing-market-data/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://myshahteam.com/gta-housing-market-data/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does GTA housing market data tell buyers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It helps buyers understand price trends, inventory, days on market and how much choice may be available in different cities. This can help you decide where to search, how quickly to act and whether there may be room to negotiate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does market data tell sellers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It helps sellers understand competition, buyer activity and pricing pressure. If inventory is rising or homes are taking longer to sell, pricing, preparation and presentation become more important."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Brampton a buyer's market or seller's market right now?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That depends on inventory, days on market, property type and price range. A city-wide number is useful, but a detached home, townhouse and condo can behave differently. Ask Team Shah Real Estate to review your specific property type and neighbourhood."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How should I compare average price, inventory and days on market?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Do not look at one number alone. Average price shows the broad direction, inventory shows how much choice buyers have, and days on market shows how quickly homes are moving. Together they give a more realistic picture of market conditions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I use market data before making an offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Market data can help you understand whether a home is priced aggressively, fairly or high compared with current conditions. Your offer strategy should also consider recent comparable sales, property condition, competition and your financing comfort."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often is this data updated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Market data should be reviewed regularly because conditions can change from month to month. Before relying on the numbers for a purchase or sale decision, confirm the latest local trend with a real estate professional."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 </head>
 <body>
   <main class="page">
-
-    <header class="topbar">
-      <a class="brand" href="https://myshahteam.com/">
-        <img class="brand-mark" src="https://myshahteam.com/wp-content/uploads/2025/07/WhatsApp-Image-2025-08-04-at-20.46.28-Photoroom-3-1.png" alt="Team Shah Real Estate">
-        <span>Team Shah Real Estate</span>
-      </a>
-      <nav class="nav-actions" aria-label="Page actions">
-        <a class="btn secondary" href="https://myshahteam.com/mortgage-calculators/">Check My Buying Budget</a>
-        <a class="btn" href="https://myshahteam.com/contact-us/">Ask Gaurang What This Means</a>
-      </nav>
-    </header>
 
     <section class="hero">
       <div>
@@ -266,7 +354,7 @@
         </div>
         <div class="cta-row">
           <a class="btn" href="https://myshahteam.com/contact-us/" style="background:#74c7ee;color:#062b55;border-color:#74c7ee">Ask Gaurang What This Means</a>
-          <a class="btn secondary" href="https://myshahteam.com/mortgage-calculators/" style="border-color:#fff;color:#fff">Check My Buying Budget</a>
+          <a class="btn secondary" href="https://myshahteam.com/mortgage-calculators/">Check My Buying Budget</a>
         </div>
       </div>
     </section>
@@ -338,7 +426,10 @@
           <p>The dashboard pulls from TRREB Market Watch, which publishes monthly. Conditions can shift meaningfully from month to month depending on sales activity, new listings, and economic signals like Bank of Canada rate decisions. Always confirm the most recent numbers before relying on them for a purchase or sale decision.</p>
         </details>
       </div>
-      <p class="source-note">Data sourced from TRREB Market Watch. Last updated: June 2026. Use this page for planning, then confirm your specific situation with a local real estate professional before making a buying or selling decision. Gaurang Shah is a Real Estate Broker with Team Shah Real Estate at Royal LePage Flower City Realty. (647) 892-2411 · mail@myshahteam.com</p>
+      <section id="data-usage" class="data-usage-note">
+        <h2>Data Usage Terms</h2>
+        <p>Data on this page is sourced from publicly available TRREB Market Watch reports, released monthly by the Toronto Regional Real Estate Board. Team Shah Real Estate compiles and presents this information for planning and educational purposes only; this is not official TRREB reporting, and TRREB remains the source of the underlying market data. Last updated: June 2026. Before making a buying or selling decision, confirm your specific situation with a local real estate professional. Gaurang Shah is a Real Estate Broker with Team Shah Real Estate at Royal LePage Flower City Realty. (647) 892-2411 - mail@myshahteam.com</p>
+      </section>
     </section>
 
   </main>
