@@ -1,8 +1,11 @@
 <!doctype html>
-<html lang="en-CA">
+<html lang="en-CA" style="color-scheme:only light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="only light">
+  <meta name="supported-color-schemes" content="light">
+  <meta name="theme-color" content="#f7fafc">
   <title>GTA Housing Market Data for Brampton, Mississauga &amp; Toronto | Gaurang Shah</title>
   <meta name="description" content="Explore GTA housing market data for Brampton, Mississauga, Toronto and nearby communities. Compare prices, inventory, days on market and trends, then ask Gaurang Shah what the numbers mean for your buying or selling plan.">
   <link rel="canonical" href="https://myshahteam.com/gta-housing-market-data/">
@@ -22,6 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
+      color-scheme: only light;
       --navy: #062b55;
       --ink: #173a5e;
       --muted: #5f6f80;
@@ -35,6 +39,7 @@
       --font: 'Poppins', Roboto, 'Segoe UI', Arial, sans-serif;
     }
     *{box-sizing:border-box}
+    html{background:#f7fafc}
     body{margin:0;min-width:320px;background:var(--paper);color:var(--ink);font-family:var(--font)}
     a{color:inherit}
     .page{width:min(1140px,calc(100% - 32px));margin:0 auto;padding:24px 0 56px}
@@ -143,13 +148,14 @@
 /* ===== Embedded Market Explorer tool styles (scoped to #marketToolRoot) ===== */
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&family=Spline+Sans+Mono:wght@400;500;600&display=swap');
 #marketToolRoot{
-  --bg:#F6F7FB; --card:#FFFFFF; --ink:#0E1526; --muted:#61697E; --line:#E6E9F2;
-  --price:#1B4F8A; --sales:#8B5CF6; --teal:#0891B2; --amber:#D97706;
+  --bg:#f7fafc; --card:#FFFFFF; --ink:#173a5e; --muted:#5f6f80; --line:#dde7f0;
+  --navy:#062b55; --navy2:#1B4F8A; --sky:#74c7ee; --amber:#c17f2c;
+  --price:#1B4F8A; --sales:#8B5CF6; --teal:#0891B2;
   --up:#0CA678; --down:#E5484D; --ok:#047857; --ok-bg:#D1FAE5;
-  --radius:18px;
+  --radius:4px;
   --mono:'Spline Sans Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-  --sans:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;
-  --display:'Archivo',-apple-system,'Segoe UI',Roboto,sans-serif;
+  --sans:'Poppins',Roboto,'Segoe UI',Arial,sans-serif;
+  --display:'Poppins',Roboto,'Segoe UI',Arial,sans-serif;
 }
 #marketToolRoot *{box-sizing:border-box;margin:0;padding:0}
 #marketToolRoot .compare-nudge,#marketToolRoot #compareNudge,#marketToolRoot .data-popup,#marketToolRoot #dataPopup{display:none!important}
@@ -185,16 +191,26 @@
 #marketToolRoot .panel-head{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between;margin-bottom:8px}
 #marketToolRoot .readout{flex:1 1 0;min-width:0}
 #marketToolRoot .readout .ro-year{font-family:var(--mono);font-size:12.5px;color:var(--muted);letter-spacing:.06em}
-#marketToolRoot .readout .ro-main{font-family:var(--mono);font-size:clamp(24px,3.6vw,34px);font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+#marketToolRoot .readout .ro-main{font-family:var(--mono);font-size:clamp(19px,2.4vw,25px);font-weight:600;font-variant-numeric:tabular-nums;line-height:1.15}
 #marketToolRoot .readout .ro-sub{font-size:13px;color:var(--muted);margin-top:2px}
 #marketToolRoot .readout .ro-sub b{color:var(--ink)}
 #marketToolRoot .controls{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex:0 0 auto}
 #marketToolRoot .pills{display:inline-flex;flex-wrap:wrap;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px}
 #marketToolRoot .pills button{appearance:none;border:0;background:transparent;font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--muted);padding:6px 12px;border-radius:999px;cursor:pointer;transition:background .15s,color .15s}
-#marketToolRoot .pills button[aria-pressed="true"]{background:var(--ink);color:#fff}
+#marketToolRoot .pills button[aria-pressed="true"]{background:var(--navy);color:#fff}
 @media(max-width:1010px){#marketToolRoot .panel-head{justify-content:flex-start}#marketToolRoot .controls{width:100%;align-items:stretch}#marketToolRoot .pills{width:100%;justify-content:center}}
 #marketToolRoot .pills button:focus-visible{outline:2px solid var(--price);outline-offset:2px}
 #marketToolRoot .chart-box{position:relative;touch-action:pan-y}
+#marketToolRoot #chart{aspect-ratio:1000/430}
+#marketToolRoot #cmpSvg{aspect-ratio:1000/380}
+@media(max-width:760px){
+  #marketToolRoot #chart{aspect-ratio:1000/750}
+  #marketToolRoot #cmpSvg{aspect-ratio:1000/700}
+}
+@media(max-width:480px){
+  #marketToolRoot #chart{aspect-ratio:1000/900}
+  #marketToolRoot #cmpSvg{aspect-ratio:1000/840}
+}
 #marketToolRoot .chart-row{display:flex;gap:14px;align-items:stretch}
 #marketToolRoot .chart-row .chart-box{flex:1;min-width:0}
 #marketToolRoot .legend-panel{width:172px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;justify-content:center}
@@ -202,17 +218,21 @@
 #marketToolRoot .legend-swatch{width:11px;height:11px;border-radius:3px;flex-shrink:0}
 #marketToolRoot .legend-name{font-size:10.5px;color:var(--muted);line-height:1.3}
 #marketToolRoot .legend-value{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--ink);margin-top:1px}
-@media(max-width:880px){#marketToolRoot .chart-row{flex-direction:column}#marketToolRoot .legend-panel{width:100%;flex-direction:row;flex-wrap:wrap}#marketToolRoot .legend-item{flex:1 1 140px}}
+@media(max-width:880px){#marketToolRoot .chart-row{flex-direction:column}#marketToolRoot .legend-panel{width:100%;flex-direction:row;flex-wrap:wrap}#marketToolRoot .legend-panel .legend-item{flex:1 1 140px}}
 #marketToolRoot svg{display:block;width:100%;height:auto}
 #marketToolRoot .chart-flag{position:absolute;top:8px;right:8px;z-index:4}
 #marketToolRoot .chart-overlay-legend{display:none;position:absolute;z-index:5;pointer-events:none;top:16px}
-#marketToolRoot .chart-tooltip-inner{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 20px rgba(6,43,85,.14);overflow:hidden;max-width:230px}
+#marketToolRoot .chart-tooltip-inner{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 20px rgba(6,43,85,.14);overflow-y:auto;overflow-x:hidden;max-width:230px;max-height:320px}
+.spark-tip{position:fixed;z-index:9999;display:none;background:#fff;border:1px solid #E6E9F2;border-radius:8px;box-shadow:0 8px 20px rgba(6,43,85,.14);padding:7px 11px;pointer-events:none;white-space:nowrap;font-family:Poppins,sans-serif}
+.spark-tip .st-label{color:#61697E;font-size:10.5px;letter-spacing:.02em}
+.spark-tip .st-val{font-weight:700;color:#0E1526;font-size:13px;font-family:'Spline Sans Mono',monospace}
 #marketToolRoot .tooltip-story-section{background:#1B4F8A;color:#fff;padding:10px 13px;font-size:12px;line-height:1.5}
+#marketToolRoot .tooltip-period-header{background:#F0F4F8;color:#4A5E72;font-size:11.5px;font-weight:700;letter-spacing:.03em;padding:7px 13px;border-bottom:1px solid #E6E9F2}
 #marketToolRoot .tooltip-story-section .tip-label{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px;opacity:.85}
 #marketToolRoot .tooltip-metrics-section{display:flex;flex-direction:column;gap:8px;padding:9px 11px}
 #marketToolRoot .tooltip-metrics-section .legend-item{border:0;padding:0;box-shadow:none;background:transparent}
 #marketToolRoot .chart-tooltip-arrow{position:absolute;top:16px;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent}
-@media(max-width:560px){#marketToolRoot .chart-tooltip-inner{padding:0;max-width:190px}#marketToolRoot .tooltip-story-section{font-size:11px;padding:8px 10px}#marketToolRoot .chart-overlay-legend .legend-name{font-size:9.5px}#marketToolRoot .chart-overlay-legend .legend-value{font-size:12px}}
+@media(max-width:560px){#marketToolRoot .chart-tooltip-inner{padding:0;max-width:210px;width:auto}#marketToolRoot .tooltip-story-section{font-size:11px;padding:8px 10px}#marketToolRoot .chart-overlay-legend .legend-name{font-size:9.5px}#marketToolRoot .chart-overlay-legend .legend-value{font-size:12px}#marketToolRoot .chart-tooltip-arrow{display:none!important}}
 
 #marketToolRoot .tip .t-year{font-weight:600;color:#FFB224}
 #marketToolRoot .tip .t-ev{color:#9DB4FF;font-family:var(--sans);font-size:11px;white-space:normal;max-width:240px;display:inline-block}
@@ -235,19 +255,11 @@
 @media(max-width:880px){#marketToolRoot .kpis{grid-template-columns:repeat(3,1fr)}#marketToolRoot .sel-grid{grid-template-columns:1fr}#marketToolRoot .panel-head{align-items:flex-start}#marketToolRoot .controls{align-items:flex-start}}
 @media(max-width:480px){#marketToolRoot .kpis{grid-template-columns:repeat(2,1fr)}}
 @media(prefers-reduced-motion:reduce){#marketToolRoot *{transition:none!important}}
-@media(prefers-color-scheme:dark){
-  #marketToolRoot{--bg:#0f1117;--card:#1a1d27;--ink:#e8eaf2;--muted:#8892a8;--line:#2a2e3d}
-  #marketToolRoot .field select,#marketToolRoot .planner-field input,#marketToolRoot .planner-field select,#marketToolRoot .planner-lead input,#marketToolRoot .planner-lead select,#marketToolRoot .pl-sit{background-color:#0f1117;color:#e8eaf2;border-color:#2a2e3d}
-  #marketToolRoot .pl-sit-active,#marketToolRoot .pl-sit.active{background:#141a2e;border-color:#74c7ee}
-  #marketToolRoot .planner-card,#marketToolRoot .planner-result,#marketToolRoot .planner-lead,#marketToolRoot .planner-alt,#marketToolRoot .planner-assumptions{background:#1a1d27;border-color:#2a2e3d}
-  #marketToolRoot .planner-result-card{background:#141720;border-color:#2a2e3d}
-  #marketToolRoot .cmp-table-panel{background:#1a1d27}
-  #marketToolRoot .cmp-metric-table thead th{background:#141720}
-  #marketToolRoot .cmp-metric-table tbody th{background:#1a1d27}
-  #marketToolRoot #plannerNudge{filter:brightness(.85)}
-  #marketToolRoot .pl-progress{background:#1a1d27;border-color:#2a2e3d}
-}
-@media(max-width:640px){#marketToolRoot .mode-toggle{grid-template-columns:1fr}#marketToolRoot .mode-toggle button{border-right:0;border-bottom:1px solid var(--line)}#marketToolRoot .mode-toggle button:last-child{border-bottom:0}#marketToolRoot .pl-sit-grid{grid-template-columns:1fr}#marketToolRoot .pl-progress{gap:3px}#marketToolRoot .pl-prog-arrow{display:none}}
+/* Dark-mode override removed: it flipped --ink to near-white while several
+   backgrounds (e.g. .dashboard-wrap on the parent page) stayed hardcoded white,
+   collapsing text contrast to ~1.2:1 for visitors with OS/browser dark mode on.
+   This tool now always renders the one designed light theme, matching every
+   other Team Shah page — no conditional re-theming. */
 
 /* ---- STEP-BY-STEP PLANNER ---- */
 #marketToolRoot .pl-block{margin-bottom:16px}
@@ -391,7 +403,7 @@
 /* ============ MODE TOGGLE ============ */
 #marketToolRoot .mode-toggle{display:flex;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px;gap:0;margin-bottom:18px}
 #marketToolRoot .mode-toggle button{flex:1;appearance:none;border:0;background:transparent;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--muted);padding:10px 18px;border-radius:999px;cursor:pointer;transition:background .15s,color .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px}
-#marketToolRoot .mode-toggle button[aria-pressed="true"]{background:var(--ink);color:#fff}
+#marketToolRoot .mode-toggle button[aria-pressed="true"]{background:var(--navy);color:#fff}
 #marketToolRoot .mode-toggle button:focus-visible{outline:2px solid var(--price);outline-offset:2px}
 
 /* ============ COMPARE PANEL ============ */
@@ -423,7 +435,7 @@
 
 /* compare chart */
 #marketToolRoot .cmp-chart-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px 12px;margin-bottom:14px}
-#marketToolRoot .cmp-chart-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:10px}
+#marketToolRoot .cmp-chart-head{display:flex;flex-direction:column;flex-wrap:wrap;gap:8px;align-items:flex-end;margin-bottom:10px}
 #marketToolRoot .cmp-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
 #marketToolRoot .cmp-legend span{display:inline-flex;align-items:center;gap:7px}
 #marketToolRoot .cmp-dot{width:28px;height:3px;border-radius:2px;display:inline-block}
@@ -470,11 +482,20 @@
 #marketToolRoot .hc-status{font-size:14px;font-weight:600;margin-bottom:5px;display:flex;align-items:center;gap:8px;line-height:1.3}
 #marketToolRoot .hc-dot{width:10px;height:10px;border-radius:50%;flex:0 0 10px;margin-top:1px}
 #marketToolRoot .hc-dot.green{background:#10B981}#marketToolRoot .hc-dot.amber{background:#F59E0B}#marketToolRoot .hc-dot.red{background:#EF4444}
-#marketToolRoot .hc-sparkline{height:40px;margin:8px 0;width:100%;display:block}
+#marketToolRoot .hc-spark-wrap{margin:8px 0 4px}
+#marketToolRoot .hc-spark-wrap .hc-sparkline{margin:4px 0}
+#marketToolRoot .hc-spark-yaxis,#marketToolRoot .hc-spark-xaxis{font-family:var(--mono);font-size:9.5px;font-weight:600;color:#3d4c5e;letter-spacing:.01em;line-height:1.3}
+#marketToolRoot .hc-spark-yaxis b,#marketToolRoot .hc-spark-xaxis{font-weight:700}
+#marketToolRoot .hc-spark-xaxis{color:var(--muted);font-weight:600;display:flex;justify-content:space-between}
+#marketToolRoot .hc-sparkline{height:130px;margin:8px 0;width:100%;display:block}
 #marketToolRoot .hc-buyer{font-size:12px;color:var(--muted);line-height:1.5;margin-top:6px;padding-top:6px;border-top:1px solid var(--line)}
 #marketToolRoot .hc-buyer b{color:var(--ink);font-weight:600}
 #marketToolRoot .hc-val{font-size:11px;color:var(--muted);margin-top:4px}
+#marketToolRoot .hc-def{font-size:10.5px;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);line-height:1.45;font-style:italic}
 @media(max-width:700px){#marketToolRoot .health-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){#marketToolRoot .health-grid{grid-template-columns:1fr}}
+#marketToolRoot .cmphc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){#marketToolRoot .cmphc-grid{grid-template-columns:1fr}}
 #marketToolRoot .cmp-verdict-text{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-top:14px}
 #marketToolRoot .cmp-verdict-text h3{font-size:16px;font-weight:700;margin-bottom:10px}
 #marketToolRoot .cmp-verdict-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px}
@@ -503,21 +524,9 @@
 @media(max-width:600px){#marketToolRoot .eco-ind-grid{grid-template-columns:1fr}}
 
 /* ============ V10 RECREATED: CALCULATOR-ALIGNED CONSUMER LAYER ============ */
-#marketToolRoot{
-  --bg:#f7fafc;
-  --card:#ffffff;
-  --ink:#062b55;
-  --muted:#657384;
-  --line:#dfe8f0;
-  --price:#062b55;
-  --sales:#1B4F8A;
-  --teal:#0076a8;
-  --amber:#f5a623;
-  --radius:4px;
-  --sans:'Poppins',Inter,-apple-system,'Segoe UI',Roboto,sans-serif;
-  --display:'Poppins',Inter,-apple-system,'Segoe UI',Roboto,sans-serif;
-  --mono:'Poppins',Inter,-apple-system,'Segoe UI',Roboto,sans-serif;
-}
+/* Root variables now declared once at the top of the file (search #marketToolRoot{--bg:...).
+   This block used to redeclare them here too, which silently won the cascade
+   over the top-level block and made edits up there look like they did nothing. */
 #marketToolRoot{background:var(--bg);font-family:var(--sans);padding:clamp(12px,2.4vw,28px)}
 #marketToolRoot .wrap{max-width:1120px}
 #marketToolRoot header{background:#062b55;border-radius:4px;padding:22px clamp(18px,3vw,30px);margin-bottom:16px;box-shadow:0 18px 42px rgba(6,43,85,.09)}
@@ -536,6 +545,7 @@
 #marketToolRoot .field label,#marketToolRoot .kpi .label,#marketToolRoot .pp-sc-l,#marketToolRoot .pp-csc-l{font-family:var(--sans);font-weight:900;color:#14375c}
 #marketToolRoot .field select,#marketToolRoot .cmp-slot select{border-radius:4px!important;background-color:#fff!important;color:#062b55!important;border-color:var(--line)!important;font-family:var(--sans);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12'%3E%3Cpath d='M1 1.5l8 8 8-8' stroke='%23062b55' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 14px center!important;background-size:18px 12px!important;padding-right:42px!important}
 #marketToolRoot .mode-toggle{display:grid;grid-template-columns:1fr 1fr 1fr;background:#fff;border:1px solid var(--line);border-radius:4px;padding:0;overflow:visible;gap:0;box-shadow:0 4px 12px rgba(6,43,85,.07);width:100%;box-sizing:border-box}
+@media(max-width:640px){#marketToolRoot .mode-toggle{grid-template-columns:1fr}#marketToolRoot .mode-toggle button{border-right:0;border-bottom:1px solid var(--line)}#marketToolRoot .mode-toggle button:last-child{border-bottom:0}#marketToolRoot .pl-sit-grid{grid-template-columns:1fr}#marketToolRoot .pl-progress{gap:3px}#marketToolRoot .pl-prog-arrow{display:none}}
 #marketToolRoot .mode-toggle button{min-height:58px;border-radius:0;background:#fff;color:var(--muted);align-items:flex-start;text-align:left;padding:12px 14px;border-right:1px solid var(--line);min-width:0;overflow:hidden}
 #marketToolRoot .mode-toggle button:last-child{border-right:0}
 #marketToolRoot .mode-toggle .mode-main{white-space:normal;word-break:break-word;font-size:13px}
@@ -560,6 +570,11 @@
 #marketToolRoot .market-narrative{border-left:3px solid #74c7ee;background:#f7fbfe;padding:13px 15px;color:var(--muted);font-size:12px;line-height:1.75;font-weight:500}
 #marketToolRoot .consumer-label{display:inline-block;background:#062b55;color:#74c7ee;border-radius:2px;padding:3px 8px;margin:0 0 7px;font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
 #marketToolRoot .consumer-accordion summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;cursor:pointer}
+@media(max-width:560px){
+  #marketToolRoot .consumer-accordion summary{flex-wrap:wrap;align-items:flex-start}
+  #marketToolRoot .consumer-accordion summary>div:first-child{flex:1 1 100%}
+  #marketToolRoot .consumer-accordion summary>div[style*="flex:1"]{display:none}
+}
 #marketToolRoot .consumer-accordion summary::-webkit-details-marker{display:none}
 #marketToolRoot .acc-title{font-size:12px;font-weight:900;color:#062b55;text-transform:uppercase;letter-spacing:.04em}
 #marketToolRoot .acc-sub{font-size:10px;color:var(--muted);font-weight:600;margin-top:3px;line-height:1.5}
@@ -672,10 +687,6 @@
 @keyframes mode-spotlight{0%,36%,100%{box-shadow:none;transform:translateY(0)}10%,24%{box-shadow:0 0 0 4px rgba(116,199,238,.34),0 12px 26px rgba(6,43,85,.16);transform:translateY(-1px)}}
 #marketToolRoot .mode-toggle{overflow:visible}
 #marketToolRoot .mode-toggle button{position:relative;overflow:visible;animation:none}
-#marketToolRoot .mode-toggle button::after{content:"";position:absolute;inset:2px;border-radius:4px;pointer-events:none;opacity:0;box-shadow:0 0 0 6px rgba(116,199,238,.68),0 0 20px rgba(116,199,238,.5),inset 0 0 0 2px rgba(116,199,238,1);animation:tab-spotlight 3.8s ease-in-out infinite}
-#marketToolRoot .mode-toggle button:nth-child(2)::after{animation-delay:1.9s}
-#marketToolRoot .mode-toggle button:nth-child(3)::after{animation-delay:3.8s}
-@keyframes tab-spotlight{0%,32%,100%{opacity:0;transform:scale(.977)}7%,20%{opacity:1;transform:scale(1.018)}}
 #marketToolRoot .market-status-banner{display:inline-flex;align-items:center;justify-content:center;border-radius:4px;padding:10px 14px;margin:9px 0 10px;font-size:18px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 10px 24px rgba(6,43,85,.08);animation:status-soft-pulse 3.4s ease-in-out infinite}
 #marketToolRoot .market-status-banner.good{background:#dff7ea;color:#087443;border:1px solid #9ee3bd}
 #marketToolRoot .market-status-banner.warn{background:#fff1d6;color:#9a5200;border:1px solid #f2c879}
@@ -731,6 +742,9 @@
 #marketToolRoot .planner-lead .wide{grid-column:1/-1}
 #marketToolRoot .planner-submit{justify-self:start;background:#062b55;color:#fff;border:0;border-radius:4px;padding:10px 14px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
 #marketToolRoot .planner-assumptions{margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+#marketToolRoot .planner-assumptions-static{margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+#marketToolRoot .planner-assumptions-static .pa-label{color:#062b55;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px}
+#marketToolRoot .planner-assumptions-static div:not(.pa-label){color:#657384;font-size:11px;line-height:1.65;font-weight:650}
 #marketToolRoot .planner-assumptions summary{list-style:none;padding:12px 14px;cursor:pointer;color:#062b55;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;display:flex;align-items:center;justify-content:space-between;gap:10px}
 #marketToolRoot .planner-assumptions summary::-webkit-details-marker{display:none}
 #marketToolRoot .planner-assumptions summary::after{content:"Show";font-size:13px;font-weight:700;color:#1B4F8A;padding:5px 13px;border:1px solid #d0d9e8;border-radius:6px;background:#f4f8fc;white-space:nowrap;flex-shrink:0;animation:show-pulse 3s ease-in-out infinite}
@@ -782,7 +796,7 @@
 #marketToolRoot #mapsLink,#marketToolRoot .print-cta,#marketToolRoot #printBtn{white-space:normal;text-align:center;line-height:1.35;min-width:0}
 @media(max-width:900px){#marketToolRoot .simple-intro,#marketToolRoot .simple-hero{grid-template-columns:1fr}#marketToolRoot .simple-intro-actions{justify-content:flex-start}#marketToolRoot .simple-snapshot-grid,#marketToolRoot .simple-read-grid{grid-template-columns:1fr 1fr}#marketToolRoot .simple-metric-list{grid-template-columns:1fr 1fr}#marketToolRoot .simple-price-value{font-size:30px}}
 @media(max-width:900px){#marketToolRoot .planner-hero,#marketToolRoot .planner-grid,#marketToolRoot .planner-cta-panel{grid-template-columns:1fr}#marketToolRoot .planner-presets,#marketToolRoot .planner-result-grid{grid-template-columns:1fr 1fr}#marketToolRoot .planner-alts{grid-template-columns:1fr}}
-@media(max-width:560px){#marketToolRoot,#marketToolRoot{width:100vw;max-width:100vw;overflow-x:hidden}#marketToolRoot{padding:12px}#marketToolRoot .wrap,#marketToolRoot #mainPanel,#marketToolRoot #comparePanel,#marketToolRoot #plannerPanel{width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;margin:0;overflow:hidden}#marketToolRoot .wrap>*,#marketToolRoot #mainPanel>*,#marketToolRoot #comparePanel>*,#marketToolRoot #plannerPanel>*{max-width:100%!important}#marketToolRoot .mobile-break{display:block}#marketToolRoot .simple-intro,#marketToolRoot .simple-hero{width:100%;max-width:100%;padding:14px}#marketToolRoot .simple-hero[style]{grid-template-columns:1fr!important}#marketToolRoot .simple-hero h2{font-size:21px}#marketToolRoot .simple-snapshot-grid,#marketToolRoot .simple-read-grid,#marketToolRoot .simple-metric-list,#marketToolRoot .planner-presets,#marketToolRoot .planner-result-grid,#marketToolRoot .planner-fields,#marketToolRoot .planner-lead-grid{grid-template-columns:1fr}#marketToolRoot .simple-estimator-gate{display:block}#marketToolRoot .simple-estimator-gate .gate-b{display:inline-block;margin-top:10px}#marketToolRoot .data-popup{right:12px;bottom:12px;width:calc(100vw - 24px)}#marketToolRoot .selector>div[style*="display:flex"]>*{flex:1 1 100%;max-width:100%}#marketToolRoot .controls{width:100%;align-items:stretch}#marketToolRoot .pills{width:100%;justify-content:center}#marketToolRoot .pills button{flex:1 1 auto;min-width:0;padding-left:8px;padding-right:8px}#marketToolRoot h1,#marketToolRoot .sub,#marketToolRoot .simple-intro h2,#marketToolRoot .simple-intro p,#marketToolRoot .simple-hero h2,#marketToolRoot .simple-hero p,#marketToolRoot .simple-stat-note,#marketToolRoot .market-narrative,#marketToolRoot .sel-note,#marketToolRoot .planner-hero h2,#marketToolRoot .planner-hero p{max-width:300px!important;overflow-wrap:break-word;word-break:break-word}#marketToolRoot .simple-action{max-width:100%;white-space:normal}#marketToolRoot .field select{max-width:100%}#marketToolRoot .cmp-table-panel{overflow:auto}#marketToolRoot .cmp-metric-table{min-width:620px}#marketToolRoot .compare-nudge{right:12px;bottom:12px}#marketToolRoot .compare-nudge span{margin-right:0}}
+@media(max-width:560px){#marketToolRoot,#marketToolRoot{width:100%;max-width:100%;overflow-x:hidden}#marketToolRoot{padding:12px}#marketToolRoot .wrap,#marketToolRoot #mainPanel,#marketToolRoot #comparePanel,#marketToolRoot #plannerPanel{width:100%!important;max-width:100%!important;margin:0;overflow:hidden}#marketToolRoot .wrap>*,#marketToolRoot #mainPanel>*,#marketToolRoot #comparePanel>*,#marketToolRoot #plannerPanel>*{max-width:100%!important}#marketToolRoot .mobile-break{display:block}#marketToolRoot .simple-intro,#marketToolRoot .simple-hero{width:100%;max-width:100%;padding:14px}#marketToolRoot .simple-hero[style]{grid-template-columns:1fr!important}#marketToolRoot .simple-hero h2{font-size:21px}#marketToolRoot .simple-snapshot-grid,#marketToolRoot .simple-read-grid,#marketToolRoot .simple-metric-list,#marketToolRoot .planner-presets,#marketToolRoot .planner-result-grid,#marketToolRoot .planner-fields,#marketToolRoot .planner-lead-grid{grid-template-columns:1fr}#marketToolRoot .simple-estimator-gate{display:block}#marketToolRoot .simple-estimator-gate .gate-b{display:inline-block;margin-top:10px}#marketToolRoot .data-popup{right:12px;bottom:12px;width:calc(100vw - 24px)}#marketToolRoot .selector>div[style*="display:flex"]>*{flex:1 1 100%;max-width:100%}#marketToolRoot .controls{width:100%;align-items:stretch}#marketToolRoot .pills{width:100%;justify-content:center}#marketToolRoot .pills button{flex:1 1 auto;min-width:0;padding-left:8px;padding-right:8px}#marketToolRoot h1,#marketToolRoot .sub,#marketToolRoot .simple-intro h2,#marketToolRoot .simple-intro p,#marketToolRoot .simple-hero h2,#marketToolRoot .simple-hero p,#marketToolRoot .simple-stat-note,#marketToolRoot .market-narrative,#marketToolRoot .sel-note,#marketToolRoot .planner-hero h2,#marketToolRoot .planner-hero p{max-width:300px!important;overflow-wrap:break-word;word-break:break-word}#marketToolRoot .simple-action{max-width:100%;white-space:normal}#marketToolRoot .field select{max-width:100%}#marketToolRoot .cmp-table-panel{overflow:auto}#marketToolRoot .cmp-metric-table{min-width:620px}#marketToolRoot .compare-nudge{right:12px;bottom:12px}#marketToolRoot .compare-nudge span{margin-right:0}}
 @media(prefers-reduced-motion:reduce){#marketToolRoot .mode-toggle button::after,#marketToolRoot .market-status-banner,#marketToolRoot .compare-nudge::before{animation:none!important}}
 
 /* Spark hover tooltip */
@@ -1252,9 +1266,10 @@ selA.onchange=function(){state.area=selA.value;state.hover=null;refreshSelectors
 selT.onchange=function(){state.type=selT.value;state.hover=null;refreshSelectors();render();};
 /* ---- metric pills per view ---- */
 const METRIC_SETS={
- monthly:[['price','Price'],['sales','Sales'],['moi','Months of inventory'],['splp','SP/LP %'],['mom','MoM %'],['yoy','YoY %'],['rate','BoC rate']],
- annual:[['price','Price'],['sales','Sales'],['moi','Months of inventory'],['splp','SP/LP %'],['yoy','YoY %'],['rate','BoC rate']]
+ monthly:[['price','Price'],['sales','Sales'],['moi','Months of inventory'],['rate','BoC rate'],['splp','SP/LP %'],['mom','MoM %'],['yoy','YoY %']],
+ annual:[['price','Price'],['sales','Sales'],['moi','Months of inventory'],['rate','BoC rate'],['splp','SP/LP %'],['yoy','YoY %']]
 };
+const SOLO_ONLY_METRICS=['splp','mom','yoy'];
 function buildMetricPills(){
  const set=METRIC_SETS[state.view];
  // drop any selected metric that doesn't exist in this view (e.g. 'mom' when switching to annual)
@@ -1265,7 +1280,8 @@ function buildMetricPills(){
 document.getElementById('metricPills').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
  const k=b.dataset.m,i=state.metrics.indexOf(k);
  if(i>-1){if(state.metrics.length>1)state.metrics.splice(i,1);/* keep at least one selected */}
- else{state.metrics.push(k);/* no cap - can select every metric in the set, rate included, since it's now scaled fairly */}
+ else if(SOLO_ONLY_METRICS.includes(k)||state.metrics.some(m=>SOLO_ONLY_METRICS.includes(m))){state.metrics=[k];/* SP/LP, MoM and YoY are single-metric only - each tells its own story and doesn't mix cleanly with the others on one chart */}
+ else{state.metrics.push(k);/* no cap - can select every other metric in the set, rate included, since it's now scaled fairly */}
  state.hover=null;[...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed',state.metrics.indexOf(x.dataset.m)>-1));curView=draw()});
 document.getElementById('viewPills').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
  state.view=b.dataset.v;state.hover=null;[...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed',x===b));
@@ -1300,7 +1316,7 @@ function renderKpis(){
 
 /* ---- chart ---- */
 const svg=document.getElementById('chart'),box=document.getElementById('chartBox'),tip=document.getElementById('tip'),ro=document.getElementById('readout'),legend=document.getElementById('legend');
-const W=1000,H=430,PD={t:20,r:24,b:34,l:88};
+const W=1000,H=430,PD={t:20,r:24,b:40,l:92};
 const METRICS={
  price:{col:'#2E5BFF',kind:'line',zero:true},
  sales:{label:'Sales',col:'#8B5CF6',kind:'line',zero:true},
@@ -1312,7 +1328,7 @@ const METRICS={
 };
 let curView=[];
 function draw(){
- if(state.metrics.length>1)return drawMulti();
+ if(state.metrics.length>1)return drawMultiAxis();
  var raw=getSeries(),M=METRICS[state.metrics[0]];
  // For yoy/mom: trim leading nulls so line starts at left edge not midway
  var data=raw;
@@ -1333,16 +1349,19 @@ function draw(){
   const z=[[yMin,2.2,'#0CA678','Sellers'],[2.2,3.8,'#6366F1','Balanced'],[3.8,yMax,'#E5484D','Buyers']];
   z.forEach(([a,b,c,lab])=>{if(b<=yMin||a>=yMax)return;const ya=y(Math.min(b,yMax)),yb=y(Math.max(a,yMin));
    s+=`<rect x="${PD.l}" y="${ya}" width="${W-PD.l-PD.r}" height="${yb-ya}" fill="${c}" opacity=".06"/>`;
-   s+=`<text x="${W-PD.r-6}" y="${ya+14}" text-anchor="end" font-size="10" fill="${c}" font-family="Spline Sans Mono,monospace" opacity=".8">${lab}</text>`;});
+   s+=`<text x="${W-PD.r-6}" y="${ya+14}" text-anchor="end" font-size="11.5" font-weight="700" fill="${c}" font-family="Spline Sans Mono,monospace" opacity=".9">${lab}</text>`;});
  }
  for(let i=0;i<=5;i++){const v=yMin+(yMax-yMin)*i/5,yy=y(v);
   const lab=state.metrics[0]==='price'?fmtK(v):state.metrics[0]==='sales'?(v>=1000?(v/1000).toFixed(1).replace('.0','')+'K':Math.round(v)):state.metrics[0]==='splp'?v.toFixed(0)+'%':state.metrics[0]==='rate'?v.toFixed(2)+'%':M.field?pct(v):v.toFixed(1);
   s+=`<line x1="${PD.l}" x2="${W-PD.r}" y1="${yy}" y2="${yy}" stroke="#E6E9F2"/>`;
-  s+=`<text x="${PD.l-9}" y="${yy+4}" text-anchor="end" font-size="13" fill="#61697E" font-family="Spline Sans Mono,monospace">${lab}</text>`;}
+  s+=`<text x="${PD.l-9}" y="${yy+4}" text-anchor="end" font-size="14.5" font-weight="600" fill="#3A4459" font-family="Spline Sans Mono,monospace">${lab}</text>`;}
+ const SOLO_AXIS_LABEL={price:'Avg Price',sales:'Sales',moi:'Months of Inventory',splp:'Sale-to-list %',rate:'BoC Rate',mom:'MoM %',yoy:'YoY %'};
+ const soloTitleX=18, soloTitleY=PD.t+(H-PD.t-PD.b)/2;
+ s+=`<text x="${soloTitleX}" y="${soloTitleY}" text-anchor="middle" font-size="12" font-weight="700" letter-spacing=".04em" fill="${M.col}" font-family="Spline Sans Mono,monospace" transform="rotate(-90 ${soloTitleX} ${soloTitleY})">${(SOLO_AXIS_LABEL[state.metrics[0]]||'').toUpperCase()}</text>`;
  const xstep=monthly?Math.ceil(N/12):1;
  data.forEach((d,i)=>{if(i%xstep===0||i===N-1){
   const lab=monthly?ymShort(d.ym):`${d.year}${d.partial?'*':''}`;
-  s+=`<text x="${x(i)}" y="${H-10}" text-anchor="middle" font-size="${monthly?11:12}" fill="#61697E" font-family="Spline Sans Mono,monospace">${lab}</text>`;}});
+  s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle" font-size="${monthly?13:14}" font-weight="600" fill="#3A4459" font-family="Spline Sans Mono,monospace">${lab}</text>`;}});
  if(M.kind==='bar'){
   const bw=Math.min(monthly?18:34,(W-PD.l-PD.r)/N*.6);
   data.forEach((d,i)=>{const v=getV(d);if(v==null)return;const yy=y(v);
@@ -1350,7 +1369,7 @@ function draw(){
  }else{
   if(M.ref!==undefined&&M.ref>yMin&&M.ref<yMax){
    const refLabel=M.ref===100?'asking price (100%)':'breakeven (0%)';
-   s+=`<line x1="${PD.l}" x2="${W-PD.r}" y1="${y(M.ref)}" y2="${y(M.ref)}" stroke="#0E1526" stroke-width="1" stroke-dasharray="2 4" opacity=".5"/><text x="${PD.l+6}" y="${y(M.ref)-5}" font-size="10" fill="#61697E" font-family="Spline Sans Mono,monospace">${refLabel}</text>`;
+   s+=`<line x1="${PD.l}" x2="${W-PD.r}" y1="${y(M.ref)}" y2="${y(M.ref)}" stroke="#0E1526" stroke-width="1" stroke-dasharray="2 4" opacity=".5"/><text x="${PD.l+6}" y="${y(M.ref)-5}" font-size="11.5" font-weight="600" fill="#4A5568" font-family="Spline Sans Mono,monospace">${refLabel}</text>`;
   }
   let line='',area='',started=false,firstX=null,lastX=null;
   data.forEach((d,i)=>{const v=getV(d);if(v==null)return;const px=x(i),py=y(v);
@@ -1424,11 +1443,11 @@ function drawMulti(){
   s+=`<line x1="${PD.l}" x2="${W-PD.r}" y1="${yy}" y2="${yy}" stroke="#E6E9F2"/>`;
   s+=`<text x="${PD.l-9}" y="${yy+4}" text-anchor="end" font-size="13" fill="#61697E" font-family="Spline Sans Mono,monospace">${(v>0?'+':'')}${v.toFixed(0)}%</text>`;}
  if(0>yMin&&0<yMax){const zy=y(0);
-  s+=`<line x1="${PD.l}" x2="${W-PD.r}" y1="${zy}" y2="${zy}" stroke="#0E1526" stroke-width="1" stroke-dasharray="2 4" opacity=".5"/><text x="${PD.l+6}" y="${zy-5}" font-size="10" fill="#61697E" font-family="Spline Sans Mono,monospace">no change since start</text>`;}
+  s+=`<line x1="${PD.l}" x2="${W-PD.r}" y1="${zy}" y2="${zy}" stroke="#0E1526" stroke-width="1" stroke-dasharray="2 4" opacity=".5"/><text x="${PD.l+6}" y="${zy-5}" font-size="11.5" font-weight="600" fill="#4A5568" font-family="Spline Sans Mono,monospace">no change since start</text>`;}
  const xstep=monthly?Math.ceil(N/12):1;
  raw.forEach((d,i)=>{if(i%xstep===0||i===N-1){
   const lab=monthly?ymShort(d.ym):`${d.year}${d.partial?'*':''}`;
-  s+=`<text x="${x(i)}" y="${H-10}" text-anchor="middle" font-size="${monthly?11:12}" fill="#61697E" font-family="Spline Sans Mono,monospace">${lab}</text>`;}});
+  s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle" font-size="${monthly?13:14}" font-weight="600" fill="#3A4459" font-family="Spline Sans Mono,monospace">${lab}</text>`;}});
  series.forEach(function(sr){
   let line='',started=false;
   sr.idx.forEach(function(v,i){if(v==null)return;const px=x(i),py=y(v);line+=(started?'L':'M')+` ${px} ${py} `;started=true;});
@@ -1442,6 +1461,169 @@ function drawMulti(){
  const hasRate=series.some(sr=>sr.key==='rate');
  legend.innerHTML=`<span style="font-size:10px;color:#61697E">Shown as % change since ${monthly?ymShort(raw[0].ym):raw[0].year} so different scales compare fairly${hasRate?' (BoC rate shown as percentage-point change, not percent change, since it starts near zero)':''} - scrub the chart for actual numbers</span>`;
  document.getElementById('metricNote').textContent='Comparing '+series.length+' metrics together on '+segName()+'. Each line is percent change from the start of this window'+(hasRate?' (BoC rate is percentage-point change instead, for a fair comparison)':'')+', not the raw value - actual numbers are in the readout above as you scrub.';
+ return raw;
+}
+
+/* ======= MULTI-AXIS MODE: BoC rate combined with other metrics =======
+   Rate is a policy input, not a market outcome, and reads best on its
+   own true scale. Rather than normalizing everything to % change,
+   every selected metric gets its own true native-unit axis: price,
+   sales and months of inventory each stack on the left (closest to
+   the plot first), BoC rate always takes the right in real percent.
+   Gridline rows are shared across all axes; each axis independently
+   labels its own value at that row, color-matched to its line. */
+function drawMultiRateAxis(){
+ const raw=getSeries();
+ const monthly=state.view==='monthly';
+ const N=raw.length;
+ const canonicalOrder=['price','sales','moi'];
+ const otherKeys=canonicalOrder.filter(k=>state.metrics.includes(k));
+ const rateVals=raw.map(d=>d.rate).filter(v=>v!=null);
+ if(!rateVals.length||!otherKeys.length){svg.innerHTML='';legend.innerHTML='Not enough overlapping data to compare these metrics for this selection.';document.getElementById('metricNote').textContent='';return raw;}
+ const axisW=58,numLeftAxes=otherKeys.length;
+ const PD2={t:PD.t,r:52,b:PD.b,l:PD.l+axisW*(numLeftAxes-1)};
+ const x=i=>PD2.l+(W-PD2.l-PD2.r)*(N===1?.5:i/(N-1));
+ let rMax=Math.max(...rateVals,0),rMin=Math.min(...rateVals,0);
+ const rPad=(rMax-rMin)*.18||.5;rMax+=rPad;rMin=Math.max(0,rMin-rPad);
+ const yRight=v=>PD2.t+(H-PD2.t-PD2.b)*(1-(v-rMin)/(rMax-rMin));
+ const leftAxes=otherKeys.map(function(k,axisIdx){
+  const M=METRICS[k];
+  const getV=d=>M.field?d[M.field]:d[k];
+  const vals=raw.map(getV).filter(v=>v!=null);
+  let lMax=Math.max(...vals),lMin=M.zero?0:Math.min(...vals);
+  if(!M.zero){const pad=(lMax-lMin)*.25||2;lMax+=pad;lMin-=pad;}else lMax*=1.08;
+  const yFn=v=>PD2.t+(H-PD2.t-PD2.b)*(1-(v-lMin)/(lMax-lMin));
+  const tickFmt=v=>k==='price'?fmtK(v):k==='sales'?(v>=1000?(v/1000).toFixed(1).replace('.0','')+'K':Math.round(v)):v.toFixed(1);
+  const label=k==='price'?(typeObj().hpi?'HPI benchmark price':'Average price'):(M.label||k);
+  return{key:k,col:M.col,getV,yFn,tickFmt,lMin,lMax,label,axisIdx};
+ });
+ let s='';
+ for(let i=0;i<=5;i++){
+  const yy=PD2.t+(H-PD2.t-PD2.b)*(1-i/5);
+  s+=`<line x1="${PD2.l}" x2="${W-PD2.r}" y1="${yy}" y2="${yy}" stroke="#E6E9F2"/>`;
+  leftAxes.forEach(function(ax){
+   const xPos=PD2.l-9-axisW*ax.axisIdx;
+   const v=ax.lMin+(ax.lMax-ax.lMin)*i/5;
+   s+=`<text x="${xPos}" y="${yy+4}" text-anchor="end" font-size="14" font-weight="600" fill="${ax.col}" font-family="Spline Sans Mono,monospace">${ax.tickFmt(v)}</text>`;
+  });
+  const rightVal=rMin+(rMax-rMin)*i/5;
+  s+=`<text x="${W-PD2.r+9}" y="${yy+4}" text-anchor="start" font-size="12.5" fill="#E34948" font-family="Spline Sans Mono,monospace">${rightVal.toFixed(2)}%</text>`;
+ }
+ const xstep=monthly?Math.ceil(N/12):1;
+ raw.forEach((d,i)=>{if(i%xstep===0||i===N-1){
+  const lab=monthly?ymShort(d.ym):`${d.year}${d.partial?'*':''}`;
+  s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle" font-size="${monthly?13:14}" font-weight="600" fill="#3A4459" font-family="Spline Sans Mono,monospace">${lab}</text>`;}});
+ leftAxes.forEach(function(ax){
+  let line='',started=false;
+  raw.forEach(function(d,i){const v=ax.getV(d);if(v==null)return;const px=x(i),py=ax.yFn(v);line+=(started?'L':'M')+` ${px} ${py} `;started=true;});
+  if(started)s+=`<path d="${line}" fill="none" stroke="${ax.col}" stroke-width="2.2" stroke-linejoin="round"/>`;
+ });
+ (function(){
+  let line='',started=false;
+  raw.forEach(function(d,i){const v=d.rate;if(v==null)return;const px=x(i),py=yRight(v);line+=(started?'L':'M')+` ${px} ${py} `;started=true;});
+  if(started)s+=`<path d="${line}" fill="none" stroke="#E34948" stroke-width="2.2" stroke-dasharray="5 3" stroke-linejoin="round"/>`;
+ })();
+ if(state.hover!==null){const hi=state.hover,hx=x(hi),d=raw[hi];
+  s+=`<line x1="${hx}" x2="${hx}" y1="${PD2.t}" y2="${H-PD2.b}" stroke="#0E1526" stroke-dasharray="3 4" opacity=".55"/>`;
+  leftAxes.forEach(function(ax){const v=ax.getV(d);if(v!=null)s+=`<circle cx="${hx}" cy="${ax.yFn(v)}" r="5" fill="${ax.col}" stroke="#fff" stroke-width="2"/>`;});
+  if(d.rate!=null)s+=`<circle cx="${hx}" cy="${yRight(d.rate)}" r="5" fill="#E34948" stroke="#fff" stroke-width="2"/>`;}
+ svg.innerHTML=s;
+ updateReadout(state.hover===null?raw[N-1]:raw[state.hover]);
+ renderLegendPanel(state.metrics,raw[state.hover===null?N-1:state.hover],state.hover===null?N-1:state.hover,N,x,raw[state.hover===null?N-1:state.hover].ev);
+ const axisList=leftAxes.map(function(ax){return '<span style="color:'+ax.col+';font-weight:600">'+ax.label+'</span>';}).join(', ');
+ legend.innerHTML=`<span style="font-size:10px;color:#61697E">${leftAxes.length>1?'Each metric has its own left axis: ':'Left axis: '}${axisList} · Right axis: <span style="color:#E34948;font-weight:600">BoC rate, actual %</span> (dashed line) - scrub the chart for exact numbers</span>`;
+ document.getElementById('metricNote').textContent=(leftAxes.length>1?'Each metric keeps its own true scale rather than being normalized to percent change, so the shapes are directly comparable in real units. ':'')+'BoC rate sits on its own right-hand axis in real percent terms since it does not share a scale with '+(leftAxes.length===1?'this metric':'these metrics')+'. Actual numbers for every selected metric are in the readout above as you scrub.';
+ return raw;
+}
+/* ======= UNIFIED MULTI-AXIS MODE: any 2+ metrics =======
+   Every selected metric gets its own true native-unit axis - never
+   normalized to percent change, regardless of whether BoC rate is
+   part of the selection. Canonical order is price, sales, months of
+   inventory, rate. The LAST selected metric in that order takes the
+   right-hand axis; everything else stacks on the left, closest-to-
+   plot first. Each axis gets a rotated color-matched title running
+   alongside its tick numbers, positioned clear of the TRREB badge.
+   If months of inventory is one of the visible axes, the sellers/
+   balanced/buyers market bands render against its own true scale. */
+function drawMultiAxis(){
+ const raw=getSeries();
+ const monthly=state.view==='monthly';
+ const N=raw.length;
+ const canonicalOrder=['price','sales','moi','rate'];
+ const selected=canonicalOrder.filter(k=>state.metrics.includes(k));
+ if(selected.length<2){svg.innerHTML='';legend.innerHTML='';document.getElementById('metricNote').textContent='';return raw;}
+ const rightKey=selected[selected.length-1];
+ const leftKeys=selected.slice(0,-1);
+ const axisW=82;
+ const PD2={t:PD.t,r:72,b:PD.b,l:PD.l+20+axisW*Math.max(0,leftKeys.length-1)};
+ const x=i=>PD2.l+(W-PD2.l-PD2.r)*(N===1?.5:i/(N-1));
+ function buildAxis(k){
+  const M=METRICS[k];
+  const getV=d=>M.field?d[M.field]:d[k];
+  const vals=raw.map(getV).filter(v=>v!=null);
+  let lMax=Math.max(...vals),lMin=M.zero?0:Math.min(...vals);
+  if(!M.zero){const pad=(lMax-lMin)*.25||2;lMax+=pad;lMin-=pad;}else lMax*=1.08;
+  const tickFmt=v=>k==='price'?fmtK(v):k==='sales'?(v>=1000?(v/1000).toFixed(1).replace('.0','')+'K':Math.round(v)):k==='rate'?v.toFixed(2)+'%':v.toFixed(1);
+  const label=k==='price'?(typeObj().hpi?'HPI benchmark':'Avg price'):k==='rate'?'BoC rate':(M.label||k);
+  return{key:k,col:M.col,getV,lMin,lMax,tickFmt,label,dashed:k==='rate'};
+ }
+ const leftAxes=leftKeys.map(buildAxis);
+ const rightAxis=buildAxis(rightKey);
+ leftAxes.forEach(function(ax,i){ax.axisIdx=i;ax.yFn=v=>PD2.t+(H-PD2.t-PD2.b)*(1-(v-ax.lMin)/(ax.lMax-ax.lMin));});
+ rightAxis.yFn=v=>PD2.t+(H-PD2.t-PD2.b)*(1-(v-rightAxis.lMin)/(rightAxis.lMax-rightAxis.lMin));
+ let s='';
+ const moiAxis=[...leftAxes,rightAxis].find(a=>a.key==='moi');
+ if(moiAxis){
+  const z=[[moiAxis.lMin,2.2,'#0CA678','Sellers'],[2.2,3.8,'#6366F1','Balanced'],[3.8,moiAxis.lMax,'#E5484D','Buyers']];
+  z.forEach(([a,b,c,lab])=>{if(b<=moiAxis.lMin||a>=moiAxis.lMax)return;const ya=moiAxis.yFn(Math.min(b,moiAxis.lMax)),yb=moiAxis.yFn(Math.max(a,moiAxis.lMin));
+   s+=`<rect x="${PD2.l}" y="${ya}" width="${W-PD2.l-PD2.r}" height="${yb-ya}" fill="${c}" opacity=".06"/>`;
+   s+=`<text x="${W-PD2.r-6}" y="${ya+14}" text-anchor="end" font-size="11.5" font-weight="700" fill="${c}" font-family="Spline Sans Mono,monospace" opacity=".9">${lab}</text>`;});
+ }
+ for(let i=0;i<=5;i++){
+  const yy=PD2.t+(H-PD2.t-PD2.b)*(1-i/5);
+  s+=`<line x1="${PD2.l}" x2="${W-PD2.r}" y1="${yy}" y2="${yy}" stroke="#E6E9F2"/>`;
+  leftAxes.forEach(function(ax){
+   const xPos=PD2.l-9-axisW*ax.axisIdx;
+   const v=ax.lMin+(ax.lMax-ax.lMin)*i/5;
+   s+=`<text x="${xPos}" y="${yy+4}" text-anchor="end" font-size="14" font-weight="600" fill="${ax.col}" font-family="Spline Sans Mono,monospace">${ax.tickFmt(v)}</text>`;
+  });
+  const rv=rightAxis.lMin+(rightAxis.lMax-rightAxis.lMin)*i/5;
+  s+=`<text x="${W-PD2.r+9}" y="${yy+4}" text-anchor="start" font-size="14" font-weight="600" fill="${rightAxis.col}" font-family="Spline Sans Mono,monospace">${rightAxis.tickFmt(rv)}</text>`;
+ }
+ const midY=PD2.t+(H-PD2.t-PD2.b)/2;
+ leftAxes.forEach(function(ax){
+  const titleX=PD2.l-9-axisW*ax.axisIdx-50;
+  s+=`<text x="${titleX}" y="${midY}" text-anchor="middle" font-size="13" font-weight="700" letter-spacing=".04em" fill="${ax.col}" font-family="Spline Sans Mono,monospace" transform="rotate(-90 ${titleX} ${midY})">${ax.label.toUpperCase()}</text>`;
+ });
+ (function(){
+  const titleX=W-PD2.r+9+50;
+  s+=`<text x="${titleX}" y="${midY}" text-anchor="middle" font-size="13" font-weight="700" letter-spacing=".04em" fill="${rightAxis.col}" font-family="Spline Sans Mono,monospace" transform="rotate(90 ${titleX} ${midY})">${rightAxis.label.toUpperCase()}</text>`;
+ })();
+ const xstep=monthly?Math.ceil(N/12):1;
+ raw.forEach((d,i)=>{if(i%xstep===0||i===N-1){
+  const lab=monthly?ymShort(d.ym):`${d.year}${d.partial?'*':''}`;
+  s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle" font-size="${monthly?13:14}" font-weight="600" fill="#3A4459" font-family="Spline Sans Mono,monospace">${lab}</text>`;}});
+
+ leftAxes.forEach(function(ax){
+  let line='',started=false;
+  raw.forEach(function(d,i){const v=ax.getV(d);if(v==null)return;const px=x(i),py=ax.yFn(v);line+=(started?'L':'M')+` ${px} ${py} `;started=true;});
+  if(started)s+=`<path d="${line}" fill="none" stroke="${ax.col}" stroke-width="2.2" stroke-linejoin="round"${ax.dashed?' stroke-dasharray="5 3"':''}/>`;
+ });
+ (function(){
+  let line='',started=false;
+  raw.forEach(function(d,i){const v=rightAxis.getV(d);if(v==null)return;const px=x(i),py=rightAxis.yFn(v);line+=(started?'L':'M')+` ${px} ${py} `;started=true;});
+  if(started)s+=`<path d="${line}" fill="none" stroke="${rightAxis.col}" stroke-width="2.2" stroke-linejoin="round"${rightAxis.dashed?' stroke-dasharray="5 3"':''}/>`;
+ })();
+ if(state.hover!==null){const hi=state.hover,hx=x(hi),d=raw[hi];
+  s+=`<line x1="${hx}" x2="${hx}" y1="${PD2.t}" y2="${H-PD2.b}" stroke="#0E1526" stroke-dasharray="3 4" opacity=".55"/>`;
+  leftAxes.forEach(function(ax){const v=ax.getV(d);if(v!=null)s+=`<circle cx="${hx}" cy="${ax.yFn(v)}" r="5" fill="${ax.col}" stroke="#fff" stroke-width="2"/>`;});
+  const rv2=rightAxis.getV(d);if(rv2!=null)s+=`<circle cx="${hx}" cy="${rightAxis.yFn(rv2)}" r="5" fill="${rightAxis.col}" stroke="#fff" stroke-width="2"/>`;}
+ svg.innerHTML=s;
+ updateReadout(state.hover===null?raw[N-1]:raw[state.hover]);
+ renderLegendPanel(state.metrics,raw[state.hover===null?N-1:state.hover],state.hover===null?N-1:state.hover,N,x,raw[state.hover===null?N-1:state.hover].ev);
+ const leftList=leftAxes.map(function(ax){return '<span style="color:'+ax.col+';font-weight:600">'+ax.label+'</span>';}).join(', ');
+ legend.innerHTML=`<span style="font-size:10px;color:#61697E">${leftAxes.length>1?'Left axes: ':'Left axis: '}${leftList} · Right axis: <span style="color:${rightAxis.col};font-weight:600">${rightAxis.label}</span> - each metric keeps its true scale, scrub the chart for exact numbers</span>`;
+ document.getElementById('metricNote').textContent='Every selected metric has its own true axis in real units rather than being normalized to percent change, so the shapes and levels are both directly readable. Actual numbers for every selected metric are in the readout above as you scrub.';
  return raw;
 }
 function metricValueLabel(k,d){
@@ -1470,14 +1652,16 @@ function renderLegendPanel(metrics,d,idx,N,xFn,eventText){
  let inner=overlay.querySelector('.chart-tooltip-inner');
  let arrow=overlay.querySelector('.chart-tooltip-arrow');
  if(!inner){overlay.innerHTML='<div class="chart-tooltip-arrow"></div><div class="chart-tooltip-inner"></div>';inner=overlay.querySelector('.chart-tooltip-inner');arrow=overlay.querySelector('.chart-tooltip-arrow');}
- const storyHtml=eventText?`<div class="tooltip-story-section"><div class="tip-label">What happened</div>${eventText}</div>`:'';
+ const periodLabel=d.ym?ymLabel(d.ym):(d.year!=null?(d.year+(d.partial?' YTD':'')):'');
+ const storyHtml=eventText?`<div class="tooltip-story-section"><div class="tip-label">${periodLabel?periodLabel+' · ':''}What happened</div>${eventText}</div>`:(periodLabel?`<div class="tooltip-period-header">${periodLabel}</div>`:'');
  inner.innerHTML=storyHtml+'<div class="tooltip-metrics-section">'+metrics.map(itemHtml).join('')+'</div>';
  overlay.style.display='block';
  const arrowBg=eventText?'#1B4F8A':'var(--card)';
  if(idx!=null&&N!=null&&xFn){
   const pct=xFn(idx)/W*100;
-  const gap=14;
-  if(idx<N/2){
+  const gap=22;
+  const notEnoughRoomOnLeft=idx<=N*0.22;
+  if(notEnoughRoomOnLeft){
    overlay.style.left='calc('+pct+'% + '+gap+'px)';
    overlay.style.right='auto';
    if(arrow){arrow.style.left='-6px';arrow.style.right='auto';arrow.style.borderRight='6px solid '+arrowBg;arrow.style.borderLeft='none';}
@@ -1521,13 +1705,24 @@ function onMove(e){
  if(ovl&&ovl.style.display!=='none'){
    ovl.dataset.cursorActive='1';
    const cursorYLocal=e.clientY-r.top;
-   ovl.style.top=cursorYLocal+'px';
+   const gap=14;
+   ovl.style.top=(cursorYLocal+gap)+'px';
    ovl.style.bottom='auto';
    requestAnimationFrame(function(){
      const tRect=ovl.getBoundingClientRect();
-     let topPx=parseFloat(ovl.style.top);
-     if(tRect.top<r.top){topPx+=(r.top-tRect.top);}
-     else if(tRect.bottom>r.bottom){topPx-=(tRect.bottom-r.bottom);}
+     const tipH=tRect.height;
+     const plotTopPx=r.top+PD.t/H*r.height;
+     const plotBottomPx=r.top+(H-PD.b)/H*r.height;
+     const cursorAbsY=r.top+cursorYLocal;
+     let topPx;
+     if(cursorAbsY+gap+tipH>plotBottomPx){
+       // Not enough room below the point - flip above it instead, so the
+       // hovered point sits just under the tooltip rather than buried inside it.
+       topPx=cursorYLocal-gap-tipH;
+       if(r.top+topPx<plotTopPx)topPx=plotTopPx-r.top;
+     }else{
+       topPx=cursorYLocal+gap;
+     }
      ovl.style.top=topPx+'px';
    });
  }
@@ -1619,7 +1814,7 @@ function cmpSeries(s){
   const tp = TYPES.find(t=>t.k===s.type)||{k:s.type,hpi:null};
   const raw = base.map(d=>({ym:d.ym,
     price:tp.hpi?(d.hpi?d.hpi[tp.hpi]:null):d.avg,
-    sales:d.sales,moi:d.moi,splp:d.splp,dom:d.dom}));
+    sales:d.sales,moi:d.moi,splp:d.splp,dom:d.dom,rate:d.rate}));
   return raw.map((d,i)=>{
     const prev=raw[i-12];
     return {...d,
@@ -1627,6 +1822,20 @@ function cmpSeries(s){
       mom:i&&raw[i-1].price&&d.price?(d.price/raw[i-1].price-1)*100:null};
   });
 }
+function cmpSeriesAnnual(s){
+  const base = DATA[cmpMarket(s)] || [];
+  const tp = TYPES.find(t=>t.k===s.type)||{k:s.type,hpi:null};
+  const raw = base.map(d=>({ym:String(d.year),year:d.year,partial:!!d.partial,
+    price:tp.hpi?(d.hpi?d.hpi[tp.hpi]:null):d.avg,
+    sales:d.sales,moi:d.moi,splp:d.splp,dom:d.dom,rate:d.rate}));
+  return raw.map((d,i)=>{
+    const prev=raw[i-1];
+    return {...d,
+      yoy:prev&&prev.price&&d.price?(d.price/prev.price-1)*100:null,
+      mom:null};
+  });
+}
+let cmpView='monthly';
 
 /* ---- build region/area options ---- */
 function buildCmpSelects(){
@@ -1675,129 +1884,206 @@ function cmpSeriesMaps(series){
 }
 function renderCmpChart(series){
   const panel = document.getElementById('cmpChartPanel');
-  const W=1000,H=380,PD={t:16,r:24,b:32,l:88};
-  const allYms = cmpAlignedMonths(series);
-  const maps = cmpSeriesMaps(series);
-  const N = allYms.length;
-  const x=i=>PD.l+(W-PD.l-PD.r)*(N<=1?0:i/(N-1));
   const allVals=series.flatMap(s=>s.data.map(d=>d.price)).filter(v=>v!=null);
   if(!allVals.length){panel.innerHTML='<p style="padding:20px;color:var(--muted)">No price data available for this combination.</p>';return;}
-  const yMin=Math.min(...allVals)*.92,yMax=Math.max(...allVals)*1.06;
-  const y=v=>PD.t+(H-PD.t-PD.b)*(1-(v-yMin)/(yMax-yMin));
-  let s='';
-  // gridlines
-  for(let i=0;i<=5;i++){const v=yMin+(yMax-yMin)*i/5,yy=y(v);
-    s+=`<line x1="${PD.l}" x2="${W-PD.r}" y1="${yy}" y2="${yy}" stroke="#E6E9F2"/>`;
-    s+=`<text x="${PD.l-8}" y="${yy+4}" text-anchor="end" font-size="13" fill="#61697E" font-family="Spline Sans Mono,monospace">${fmtK(v)}</text>`;}
-  // x labels (every 6 months)
-  allYms.forEach((ym,i)=>{if(i%6===0||i===N-1)
-    s+=`<text x="${x(i)}" y="${H-10}" text-anchor="middle" font-size="11" fill="#61697E" font-family="Spline Sans Mono,monospace">${ymShort(ym)}</text>`;});
-  // lines
-  series.forEach((sr,si)=>{
-    const map=maps[si];
-    let line='',area='',started=false,firstX=null,lastX=null;
-    allYms.forEach((ym,i)=>{const d=map.get(ym);if(!d||d.price==null)return;const px=x(i),py=y(d.price);
-      line+=(started?'L':'M')+` ${px} ${py} `;area+=(started?'L':'M')+` ${px} ${py} `;
-      if(!started)firstX=px;lastX=px;started=true;});
-    if(!started)return;
-    area+=` L ${lastX} ${y(yMin)} L ${firstX} ${y(yMin)} Z`;
-    s+=`<defs><linearGradient id="cg${si}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sr.color}" stop-opacity=".14"/><stop offset="1" stop-color="${sr.color}" stop-opacity="0"/></linearGradient></defs>`;
-    s+=`<path d="${area}" fill="url(#cg${si})"/>`;
-    s+=`<path d="${line}" fill="none" stroke="${sr.color}" stroke-width="2.4" stroke-linejoin="round"/>`;
-  });
-  // hover scrub
-  const svgEl=`<svg id="cmpSvg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="display:block;width:100%;height:auto">${s}</svg>`;
-  const tipEl=`<div class="tip" id="cmpTip"></div>`;
-  const lastYm=allYms[N-1];
+  const svgEl=`<svg id="cmpSvg" viewBox="0 0 1000 380" preserveAspectRatio="none" style="display:block;width:100%;height:auto"></svg>`;
+  const overlayEl=`<div class="chart-overlay-legend" id="cmpOverlay"></div>`;
   const legItems=series.map((sr,si)=>`<span><i class="cmp-dot" style="background:${sr.color}"></i>${sr.label} · ${sr.type}</span>`).join('');
   const legEl=`<div class="cmp-legend">${legItems}</div>`;
   panel.innerHTML=`
     <div class="cmp-chart-head">
-      <div style="font-family:var(--mono);font-size:12px;color:var(--muted)">Average price · monthly · Jun 2023 - ${lastYm?ymLabel(lastYm):'June 2026'}</div>
+      <div class="pills" role="group" id="cmpViewPills">
+        <button data-cv="monthly" aria-pressed="${cmpView==='monthly'}">Monthly · 36 mo</button>
+        <button data-cv="annual" aria-pressed="${cmpView==='annual'}">Annual · since 2016</button>
+      </div>
       <div class="pills" role="group" id="cmpMetricPills">
-        <button data-cm="price" aria-pressed="true">Price</button>
-        <button data-cm="sales" aria-pressed="false">Sales</button>
-        <button data-cm="moi" aria-pressed="false">Inventory</button>
-        <button data-cm="splp" aria-pressed="false">SP/LP</button>
-        <button data-cm="mom" aria-pressed="false">MoM %</button>
-        <button data-cm="yoy" aria-pressed="false">YoY %</button>
+        <button data-cm="price" aria-pressed="${cmpMetrics.includes('price')}">Price</button>
+        <button data-cm="sales" aria-pressed="${cmpMetrics.includes('sales')}">Sales</button>
+        <button data-cm="moi" aria-pressed="${cmpMetrics.includes('moi')}">Inventory</button>
+        <button data-cm="rate" aria-pressed="${cmpMetrics.includes('rate')}">BoC rate</button>
+        <button data-cm="splp" aria-pressed="${cmpMetrics.includes('splp')}">SP/LP</button>
+        <button data-cm="mom" aria-pressed="${cmpMetrics.includes('mom')}">MoM %</button>
+        <button data-cm="yoy" aria-pressed="${cmpMetrics.includes('yoy')}">YoY %</button>
       </div>
     </div>
-    <div style="position:relative;touch-action:pan-y">${svgEl}${tipEl}</div>
+    <div style="position:relative;touch-action:pan-y">${svgEl}${overlayEl}</div>
+    <p style="font-size:11px;color:var(--muted);margin:6px 0 0">Tap more than one of Price, Sales, Inventory or BoC rate to compare them together - each keeps its own axis.</p>
     ${legEl}`;
+  redrawCmpChart._wired=false;
+  redrawCmpChart(series,null);
   document.getElementById('cmpMetricPills').addEventListener('click',e=>{
     const b=e.target.closest('button');if(!b)return;
-    cmpMetric=b.dataset.cm;
-    [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed',x===b));
-    redrawCmpChart(series);
+    const k=b.dataset.cm,i=cmpMetrics.indexOf(k);
+    if(i>-1){if(cmpMetrics.length>1)cmpMetrics.splice(i,1);}
+    else if(SOLO_ONLY_METRICS.includes(k)||cmpMetrics.some(m=>SOLO_ONLY_METRICS.includes(m))){cmpMetrics=[k];}
+    else{cmpMetrics.push(k);}
+    [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed',cmpMetrics.indexOf(x.dataset.cm)>-1));
+    redrawCmpChart(series,null);
   });
-  addCmpScrub(panel,series,W,H,PD,x,y,yMin,yMax);
+  document.getElementById('cmpViewPills').addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b)return;
+    cmpView=b.dataset.cv;
+    renderCompare();
+  });
 }
-let cmpMetric='price';
-function redrawCmpChart(series){
+let cmpMetrics=['price'];
+const METRIC_DASH={price:null,sales:'2 3',moi:'8 3',rate:'5 2 1 2'};
+function redrawCmpChart(series,hoverIdx){
   const allYms = cmpAlignedMonths(series);
   const maps = cmpSeriesMaps(series);
   const N = allYms.length;
-  const allVals=series.flatMap((s,si)=>allYms.map(ym=>{const d=maps[si].get(ym);return d?getCV(d):null;})).filter(v=>v!=null);
-  if(!allVals.length)return;
-  const W=1000,H=380,PD={t:16,r:24,b:32,l:88};
+  if(!N)return;
+  const canonicalOrder=['price','sales','moi','rate'];
+  const multiKeys=canonicalOrder.filter(k=>cmpMetrics.includes(k));
+  const soloKey=cmpMetrics.find(k=>SOLO_ONLY_METRICS.includes(k));
+  const activeKeys=soloKey?[soloKey]:(multiKeys.length?multiKeys:['price']);
+  const isMulti=activeKeys.length>1;
+  const W=1000,H=380;
+  const axisW=82,numLeftAxes=isMulti?activeKeys.length-1:0;
+  const PD={t:16,r:isMulti?72:24,b:38,l:92+(isMulti?axisW*Math.max(0,numLeftAxes-1):0)};
   const x=i=>PD.l+(W-PD.l-PD.r)*(N<=1?0:i/(N-1));
-  let yMin,yMax;
-  if(cmpMetric==='yoy'||cmpMetric==='mom'){yMax=Math.ceil(Math.max(...allVals,5)/5)*5;yMin=Math.floor(Math.min(...allVals,-5)/5)*5;}
-  else{yMin=Math.min(...allVals)*.93;yMax=Math.max(...allVals)*1.06;}
-  const y=v=>PD.t+(H-PD.t-PD.b)*(1-(v-yMin)/(yMax-yMin));
-  let s='';
-  for(let i=0;i<=5;i++){const v=yMin+(yMax-yMin)*i/5,yy=y(v);
-    const lab=cmpMetric==='price'?fmtK(v):cmpMetric==='moi'?v.toFixed(1):cmpMetric==='splp'?v.toFixed(0)+'%':cmpMetric==='sales'?(v>=1000?(v/1000).toFixed(1)+'K':Math.round(v)):(cmpMetric==='mom'||cmpMetric==='yoy')?pct(v):v.toFixed(1);
-    s+=`<line x1="${PD.l}" x2="${W-PD.r}" y1="${yy}" y2="${yy}" stroke="#E6E9F2"/>`;
-    s+=`<text x="${PD.l-8}" y="${yy+4}" text-anchor="end" font-size="13" fill="#61697E" font-family="Spline Sans Mono,monospace">${lab}</text>`;}
-  allYms.forEach((ym,i)=>{if(i%6===0||i===N-1)
-    s+=`<text x="${x(i)}" y="${H-10}" text-anchor="middle" font-size="11" fill="#61697E" font-family="Spline Sans Mono,monospace">${ymShort(ym)}</text>`;});
-  if(cmpMetric==='mom'||cmpMetric==='yoy'){
-    const zero=y(0);
-    s+=`<line x1="${PD.l}" x2="${W-PD.r}" y1="${zero}" y2="${zero}" stroke="#0E1526" stroke-width="1" stroke-dasharray="2 4" opacity=".5"/>`;
-    s+=`<text x="${PD.l+6}" y="${zero-5}" font-size="10" fill="#61697E" font-family="Spline Sans Mono,monospace">breakeven (0%)</text>`;
-  }
-  series.forEach((sr,si)=>{
-    const map=maps[si];
-    let line='',area='',started=false,firstX=null,lastX=null;
-    allYms.forEach((ym,i)=>{const d=map.get(ym);const v=d?getCV(d):null;if(v==null)return;const px=x(i),py=y(v);
-      line+=(started?'L':'M')+` ${px} ${py} `;area+=(started?'L':'M')+` ${px} ${py} `;
-      if(!started)firstX=px;lastX=px;started=true;});
-    if(!started)return;
-    area+=` L ${lastX} ${y(yMin)} L ${firstX} ${y(yMin)} Z`;
-    s+=`<defs><linearGradient id="cg${si}r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sr.color}" stop-opacity=".14"/><stop offset="1" stop-color="${sr.color}" stop-opacity="0"/></linearGradient></defs>`;
-    s+=`<path d="${area}" fill="url(#cg${si}r)"/>`;
-    s+=`<path d="${line}" fill="none" stroke="${sr.color}" stroke-width="2.4" stroke-linejoin="round"/>`;
+  const built=activeKeys.map(function(k){
+    const vals=series.flatMap(function(sr,si){return allYms.map(function(ym){const d=maps[si].get(ym);return d?getCV(d,k):null;});}).filter(v=>v!=null);
+    let lMin,lMax;
+    if(k==='yoy'||k==='mom'){lMax=Math.ceil(Math.max(...vals,5)/5)*5;lMin=Math.floor(Math.min(...vals,-5)/5)*5;}
+    else{lMin=(k==='rate'?0:Math.min(...vals)*.93);lMax=Math.max(...vals)*1.06;}
+    const yFn=v=>PD.t+(H-PD.t-PD.b)*(1-(v-lMin)/(lMax-lMin));
+    const label=k==='price'?'Avg price':k==='moi'?'Inventory':k==='splp'?'SP/LP':k==='rate'?'BoC rate':k==='mom'?'MoM %':k==='yoy'?'YoY %':'Sales';
+    return{key:k,lMin,lMax,yFn,label};
   });
+  const rightAxis=isMulti?built[built.length-1]:built[0];
+  const leftAxes=isMulti?built.slice(0,-1):[];
+  let s='';
+  for(let i=0;i<=5;i++){
+    const yy=PD.t+(H-PD.t-PD.b)*(1-i/5);
+    s+=`<line x1="${PD.l}" x2="${W-PD.r}" y1="${yy}" y2="${yy}" stroke="#E6E9F2"/>`;
+    if(isMulti){
+      leftAxes.forEach(function(ax,axisIdx){
+        const xPos=PD.l-9-axisW*axisIdx;
+        const v=ax.lMin+(ax.lMax-ax.lMin)*i/5;
+        s+=`<text x="${xPos}" y="${yy+4}" text-anchor="end" font-size="14" font-weight="600" fill="#3A4459" font-family="Spline Sans Mono,monospace">${cmpValFmt(v,ax.key)}</text>`;
+      });
+      const rv=rightAxis.lMin+(rightAxis.lMax-rightAxis.lMin)*i/5;
+      s+=`<text x="${W-PD.r+9}" y="${yy+4}" text-anchor="start" font-size="14" font-weight="600" fill="#3A4459" font-family="Spline Sans Mono,monospace">${cmpValFmt(rv,rightAxis.key)}</text>`;
+    }else{
+      const v=rightAxis.lMin+(rightAxis.lMax-rightAxis.lMin)*i/5;
+      s+=`<text x="${PD.l-8}" y="${yy+4}" text-anchor="end" font-size="14" font-weight="600" fill="#3A4459" font-family="Spline Sans Mono,monospace">${cmpValFmt(v,rightAxis.key)}</text>`;
+    }
+  }
+  if(isMulti){
+    const midY=PD.t+(H-PD.t-PD.b)/2;
+    leftAxes.forEach(function(ax,axisIdx){
+      const titleX=PD.l-9-axisW*axisIdx-50;
+      s+=`<text x="${titleX}" y="${midY}" text-anchor="middle" font-size="12" font-weight="700" letter-spacing=".04em" fill="#3A4459" font-family="Spline Sans Mono,monospace" transform="rotate(-90 ${titleX} ${midY})">${ax.label.toUpperCase()}</text>`;
+    });
+    const titleX=W-PD.r+9+50;
+    s+=`<text x="${titleX}" y="${midY}" text-anchor="middle" font-size="12" font-weight="700" letter-spacing=".04em" fill="#3A4459" font-family="Spline Sans Mono,monospace" transform="rotate(90 ${titleX} ${midY})">${rightAxis.label.toUpperCase()}</text>`;
+  }
+  const xstep=cmpView==='monthly'?Math.ceil(N/12):1;
+  allYms.forEach((ym,i)=>{if(i%xstep===0||i===N-1)
+    s+=`<text x="${x(i)}" y="${H-10}" text-anchor="middle" font-size="13" font-weight="600" fill="#3A4459" font-family="Spline Sans Mono,monospace">${cmpXLabel(ym)}</text>`;});
+  if(!isMulti&&(rightAxis.key==='mom'||rightAxis.key==='yoy')){
+    const zero=rightAxis.yFn(0);
+    s+=`<line x1="${PD.l}" x2="${W-PD.r}" y1="${zero}" y2="${zero}" stroke="#0E1526" stroke-width="1" stroke-dasharray="2 4" opacity=".5"/>`;
+    s+=`<text x="${PD.l+6}" y="${zero-5}" font-size="11.5" font-weight="600" fill="#4A5568" font-family="Spline Sans Mono,monospace">breakeven (0%)</text>`;
+  }
+  built.forEach(function(ax){
+    series.forEach((sr,si)=>{
+      const map=maps[si];
+      let line='',area='',started=false,firstX=null,lastX=null;
+      allYms.forEach((ym,i)=>{const d=map.get(ym);const v=d?getCV(d,ax.key):null;if(v==null)return;const px=x(i),py=ax.yFn(v);
+        line+=(started?'L':'M')+` ${px} ${py} `;area+=(started?'L':'M')+` ${px} ${py} `;
+        if(!started)firstX=px;lastX=px;started=true;});
+      if(!started)return;
+      const dash=METRIC_DASH[ax.key];
+      if(!isMulti){
+        area+=` L ${lastX} ${ax.yFn(ax.lMin)} L ${firstX} ${ax.yFn(ax.lMin)} Z`;
+        s+=`<defs><linearGradient id="cg${si}r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sr.color}" stop-opacity=".14"/><stop offset="1" stop-color="${sr.color}" stop-opacity="0"/></linearGradient></defs>`;
+        s+=`<path d="${area}" fill="url(#cg${si}r)"/>`;
+      }
+      s+=`<path d="${line}" fill="none" stroke="${sr.color}" stroke-width="2.4" stroke-linejoin="round"${dash?` stroke-dasharray="${dash}"`:''}/>`;
+    });
+  });
+  if(hoverIdx!=null&&hoverIdx>=0&&hoverIdx<N){
+    const hx=x(hoverIdx),ym=allYms[hoverIdx];
+    s+=`<line x1="${hx}" x2="${hx}" y1="${PD.t}" y2="${H-PD.b}" stroke="#0E1526" stroke-dasharray="3 4" opacity=".55"/>`;
+    built.forEach(function(ax){series.forEach((sr,si)=>{const d=maps[si].get(ym);const v=d?getCV(d,ax.key):null;if(v!=null)s+=`<circle cx="${hx}" cy="${ax.yFn(v)}" r="5" fill="${sr.color}" stroke="#fff" stroke-width="2"/>`;});});
+  }
   document.getElementById('cmpSvg').innerHTML=s;
-  const ti=document.getElementById('cmpSvg').closest('div');
-  addCmpScrub(ti.closest('.cmp-chart-panel'),series,W,H,PD,x,y,yMin,yMax);
+  if(!redrawCmpChart._wired){addCmpScrub(document.getElementById('cmpSvg').closest('.cmp-chart-panel'),series,W,H,PD,x);redrawCmpChart._wired=true;}
 }
-function getCV(d){if(!d)return null;return cmpMetric==='price'?d.price:cmpMetric==='moi'?d.moi:cmpMetric==='splp'?d.splp:cmpMetric==='mom'?d.mom:cmpMetric==='sales'?d.sales:d.yoy;}
+redrawCmpChart._wired=false;
+function getCV(d,k){if(!d)return null;k=k||cmpMetrics[0];return k==='price'?d.price:k==='moi'?d.moi:k==='splp'?d.splp:k==='mom'?d.mom:k==='sales'?d.sales:k==='rate'?d.rate:d.yoy;}
+function cmpXLabel(ym){return cmpView==='monthly'?ymShort(ym):ym+(String(ym)==='2026'?'*':'');}
+function cmpPeriodLabel(ym){return cmpView==='monthly'?ymLabel(ym):('Year '+ym+(String(ym)==='2026'?' (YTD)':''));}
+function cmpValFmt(v,k){if(v==null)return'n/a';k=k||cmpMetrics[0];return k==='price'?fmtK(v):k==='moi'?v.toFixed(1)+' mo':k==='splp'?v.toFixed(0)+'%':k==='rate'?v.toFixed(2)+'%':(k==='mom'||k==='yoy')?pct(v):k==='sales'?fmtN(v):v.toFixed(1);}
+function cmpMetricLabel(k){return k==='price'?'Price':k==='moi'?'Inventory':k==='splp'?'SP/LP':k==='rate'?'BoC rate':k==='mom'?'MoM %':k==='yoy'?'YoY %':'Sales';}
 
-function addCmpScrub(panel,series,W,H,PD,x,y,yMin,yMax){
+function addCmpScrub(panel,series,W,H,PD,x){
   const box=panel.querySelector('[style*="position:relative"]');
   if(!box)return;
-  const allYms=cmpAlignedMonths(series);
-  const maps=cmpSeriesMaps(series);
-  const N=allYms.length;
   box.onpointermove=e=>{
+    const allYms=cmpAlignedMonths(series);
+    const maps=cmpSeriesMaps(series);
+    const N=allYms.length;
     if(!N)return;
     const r=box.getBoundingClientRect();
     const fx=(e.clientX-r.left)/r.width*W;
     const denom=Math.max(N-1,1);
     const i=Math.max(0,Math.min(N-1,Math.round((fx-PD.l)/((W-PD.l-PD.r)/denom))));
-    const tip=document.getElementById('cmpTip');
-    const xpx=(PD.l+(W-PD.l-PD.r)*(i/denom))/W*r.width;
-    tip.style.opacity=1;tip.style.left=Math.max(140,Math.min(r.width-140,xpx))+'px';tip.style.top='20px';
+    redrawCmpChart(series,i);
+    const tip=document.getElementById('cmpOverlay');
     const ym=allYms[i];
-    let html=`<span class="t-year">${ymLabel(ym)}</span>`;
-    series.forEach((sr,si)=>{const d=maps[si].get(ym);const v=getCV(d);
-      html+=`<br><span style="color:${sr.color};font-weight:600">${sr.label}</span> ${v!=null?(cmpMetric==='price'?fmtK(v):cmpMetric==='moi'?v.toFixed(1)+' mo':cmpMetric==='splp'?v.toFixed(0)+'%':(cmpMetric==='mom'||cmpMetric==='yoy')?pct(v):v.toFixed(1)):'n/a'}`;});
-    tip.innerHTML=html;
+    const canonicalOrder=['price','sales','moi','rate'];
+    const multiKeys=canonicalOrder.filter(k=>cmpMetrics.includes(k));
+    const soloKey=cmpMetrics.find(k=>SOLO_ONLY_METRICS.includes(k));
+    const activeKeys=soloKey?[soloKey]:(multiKeys.length?multiKeys:['price']);
+    let rowsHtml='';
+    if(activeKeys.length>1){
+      activeKeys.forEach(function(k){
+        rowsHtml+=`<div style="font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#8A93A6;margin-top:6px">${cmpMetricLabel(k)}</div>`;
+        series.forEach((sr,si)=>{const d=maps[si].get(ym);const v=getCV(d,k);
+          rowsHtml+=`<div class="legend-item"><span class="legend-swatch" style="background:${sr.color}"></span><div><div class="legend-name">${sr.label}</div><div class="legend-value">${cmpValFmt(v,k)}</div></div></div>`;});
+      });
+    }else{
+      series.forEach((sr,si)=>{const d=maps[si].get(ym);const v=getCV(d,activeKeys[0]);
+        rowsHtml+=`<div class="legend-item"><span class="legend-swatch" style="background:${sr.color}"></span><div><div class="legend-name">${sr.label} · ${sr.type}</div><div class="legend-value">${cmpValFmt(v,activeKeys[0])}</div></div></div>`;});
+    }
+    tip.innerHTML=`<div class="chart-tooltip-arrow" style="left:-6px;border-right:6px solid var(--card);border-left:none"></div><div class="chart-tooltip-inner"><div class="tooltip-period-header">${cmpPeriodLabel(ym)}</div><div class="tooltip-metrics-section">${rowsHtml}</div></div>`;
+    tip.style.display='block';
+    const pct=x(i)/W*100;
+    const gap=22;
+    const notEnoughRoomOnLeft=i<=N*0.22;
+    const arrow=tip.querySelector('.chart-tooltip-arrow');
+    if(notEnoughRoomOnLeft){
+      tip.style.left='calc('+pct+'% + '+gap+'px)';tip.style.right='auto';
+      if(arrow){arrow.style.left='-6px';arrow.style.right='auto';arrow.style.borderRight='6px solid var(--card)';arrow.style.borderLeft='none';}
+    }else{
+      tip.style.right='calc('+(100-pct)+'% + '+gap+'px)';tip.style.left='auto';
+      if(arrow){arrow.style.right='-6px';arrow.style.left='auto';arrow.style.borderLeft='6px solid var(--card)';arrow.style.borderRight='none';}
+    }
+    tip.style.top='16px';tip.style.bottom='auto';
+    tip.dataset.cursorActive='1';
+    const cursorYLocal=e.clientY-r.top;
+    const vgap=14;
+    tip.style.top=(cursorYLocal+vgap)+'px';
+    requestAnimationFrame(function(){
+      const tRect=tip.getBoundingClientRect();
+      const tipH=tRect.height;
+      const plotTopPx=r.top+PD.t/H*r.height;
+      const plotBottomPx=r.top+(H-PD.b)/H*r.height;
+      const cursorAbsY=r.top+cursorYLocal;
+      let topPx;
+      if(cursorAbsY+vgap+tipH>plotBottomPx){
+        topPx=cursorYLocal-vgap-tipH;
+        if(r.top+topPx<plotTopPx)topPx=plotTopPx-r.top;
+      }else{
+        topPx=cursorYLocal+vgap;
+      }
+      tip.style.top=topPx+'px';
+    });
   };
-  box.onpointerleave=()=>{const t=document.getElementById('cmpTip');if(t)t.style.opacity=0;};
+  box.onpointerleave=()=>{const t=document.getElementById('cmpOverlay');if(t){t.style.display='none';t.dataset.cursorActive='';}redrawCmpChart(series,null);};
 }
 
 /* ---- compare KPIs ---- */
@@ -1839,17 +2125,16 @@ function renderCmpVerdict(series){
 
 /* ---- main render ---- */
 function renderCompare(){
-  cmpMetric='price';
   const series=cmpState.filter(s=>s.active).map((s,i)=>({
     label:cmpMarket(s), type:s.type, color:SLOT_COLORS[cmpState.indexOf(s)],
-    data:cmpSeries(s)
+    data:cmpView==='monthly'?cmpSeries(s):cmpSeriesAnnual(s)
   }));
   renderCmpChart(series);
   renderCmpKpis(series);
   renderCmpVerdict(series);
-  // re-wire metric pills
+  // re-wire metric pills to reflect current selection
   const pp=document.getElementById('cmpMetricPills');
-  if(pp){[...pp.children].forEach(b=>b.setAttribute('aria-pressed',b.dataset.cm==='price'));}
+  if(pp){[...pp.children].forEach(b=>b.setAttribute('aria-pressed',cmpMetrics.includes(b.dataset.cm)));}
 }
 
 /* ---- mode toggle ---- */
@@ -1889,7 +2174,7 @@ function calcHealthSignals(area){
     var dot=v<1.5?"green":v<3?"amber":"red";
     var buyer=v<1.5?"Competition is high. Have financing confirmed.":v<3?"Reasonable selection available.":"You have real choice and negotiating power.";
     var seller=v<1.5?"Good time to list.":v<3?"Price well and your home should move.":"Price accurately from day one. Overpriced homes sit.";
-    signals.push({title:"Supply vs demand",spark:sdr,sparkLabels:sdrLabels,val:v.toFixed(1)+" listings per sale",label:lbl,dot:dot,buyer:buyer,seller:seller,sparkUnit:" listings/sale"});}
+    signals.push({title:"Supply vs demand",spark:sdr,sparkLabels:sdrLabels,val:v.toFixed(1)+" listings per sale",label:lbl,dot:dot,buyer:buyer,seller:seller,sparkUnit:" listings/sale",def:"New listings divided by sales each month. A higher number means more homes for sale relative to how many are selling."});}
   var prices=recent.map(function(d){return d.price||null;}).filter(Boolean);
   var pricesLabels=recent.map(function(d){return d.price?(d.ym||''):null;}).filter(Boolean);
   if(prices.length>=6){
@@ -1899,7 +2184,7 @@ function calcHealthSignals(area){
     var dot=chg>1.5?"amber":"green";
     var buyer=chg>1.5?"Prices rising. Waiting may cost more.":chg<-1.5?"Prices softening. Buying now locks in current pricing.":"Low risk of buying at a peak.";
     var seller=chg>1.5?"Good momentum. Strong time to list.":chg<-1.5?"Price carefully. Market moving against sellers.":"Stable. Price at current comparables.";
-    signals.push({title:"Price momentum (3-mo)",spark:prices,sparkLabels:pricesLabels,val:(chg>=0?"+":"")+chg.toFixed(1)+"% 3-mo trend",label:lbl,dot:dot,buyer:buyer,seller:seller,sparkUnit:""});}
+    signals.push({title:"Price momentum (3-mo)",spark:prices,sparkLabels:pricesLabels,val:(chg>=0?"+":"")+chg.toFixed(1)+"% 3-mo trend",label:lbl,dot:dot,buyer:buyer,seller:seller,sparkUnit:"",def:"Compares the last 3 months average price to the 3 months before that, to catch a shift in direction earlier than year-over-year figures would."});}
   var abs=recent.map(function(d){return d.sales&&d.newList?d.sales/d.newList:null;}).filter(Boolean);
   var absLabels=recent.map(function(d){return d.sales&&d.newList?(d.ym||''):null;}).filter(Boolean);
   if(abs.length){var v=abs[abs.length-1];
@@ -1907,7 +2192,7 @@ function calcHealthSignals(area){
     var dot=v>0.6?"green":v>0.35?"amber":"red";
     var buyer=v>0.6?"Most listings sell. Act fast on a home you like.":v>0.35?"Good selection. Take time to compare.":"Plenty of choice. Negotiate confidently.";
     var seller=v>0.6?"Buyers active. Well-priced homes move.":v>0.35?"Presentation and pricing matter.":"Your home must stand out on price and condition.";
-    signals.push({title:"Listing absorption",spark:abs,sparkLabels:absLabels,val:Math.round(v*100)+"% of new listings sold",label:lbl,dot:dot,buyer:buyer,seller:seller,sparkUnit:""});}
+    signals.push({title:"Listing absorption",spark:abs,sparkLabels:absLabels,val:Math.round(v*100)+"% of new listings sold",label:lbl,dot:dot,buyer:buyer,seller:seller,sparkUnit:"",def:"The share of homes listed this month that actually sold. Higher means listings are moving fast; lower means more sitting unsold."});}
   var splp=recent.map(function(d){return d.splp||null;}).filter(Boolean);
   var splpLabels=recent.map(function(d){return d.splp?(d.ym||''):null;}).filter(Boolean);
   if(splp.length>=4){var last=splp[splp.length-1];var prev=splp.slice(-4,-1).reduce(function(a,b){return a+b;},0)/3;var dir=last-prev;
@@ -1915,7 +2200,7 @@ function calcHealthSignals(area){
     var dot=dir>0.5?"amber":"green";
     var buyer=dir>0.5?"Price offers carefully.":dir<-0.5?"Room to negotiate below list. Use it.":"Fair market. Offers around list are typical.";
     var seller=dir>0.5?"Your negotiating position is improving.":dir<-0.5?"Expect offers below asking. Price with room.":"Stable. Price accurately.";
-    signals.push({title:"Sale-to-list trend",spark:splp,sparkLabels:splpLabels,val:last.toFixed(0)+"% SP/LP (6-mo: "+(dir>=0?"+":"")+dir.toFixed(1)+"%)",label:lbl,dot:dot,buyer:buyer,seller:seller,sparkUnit:"%"});}
+    signals.push({title:"Sale-to-list trend",spark:splp,sparkLabels:splpLabels,val:last.toFixed(0)+"% SP/LP (6-mo: "+(dir>=0?"+":"")+dir.toFixed(1)+"%)",label:lbl,dot:dot,buyer:buyer,seller:seller,sparkUnit:"%",def:"The average sale price as a percentage of the final asking price. Under 100% means homes are selling below asking; over 100% means bidding above it."});}
   var doms=recent.map(function(d){return d.dom||null;}).filter(Boolean);
   var domsLabels=recent.map(function(d){return d.dom?(d.ym||''):null;}).filter(Boolean);
   if(doms.length>=4){var last=doms[doms.length-1];var prev3=doms.slice(-4,-1).reduce(function(a,b){return a+b;},0)/3;var dir=last-prev3;
@@ -1923,7 +2208,7 @@ function calcHealthSignals(area){
     var dot=dir>2?"red":dir<-2?"amber":"green";
     var buyer=dir>2?"More time to decide. Market cooling.":dir<-2?"Good homes move quickly. Be ready.":"Stable pace. Act on a home you love.";
     var seller=dir>2?"Buyers taking their time. Price aggressively.":dir<-2?"Tightening market. Good time to list.":"Consistent demand. Fair pricing will sell.";
-    signals.push({title:"Days on market trend",spark:doms,sparkLabels:domsLabels,val:Math.round(last)+" days (vs 3 mo ago: "+(dir>=0?"+":"")+Math.round(dir)+" days)",label:lbl,dot:dot,buyer:buyer,seller:seller,sparkUnit:"d"});}
+    signals.push({title:"Days on market trend",spark:doms,sparkLabels:domsLabels,val:Math.round(last)+" days (vs 3 mo ago: "+(dir>=0?"+":"")+Math.round(dir)+" days)",label:lbl,dot:dot,buyer:buyer,seller:seller,sparkUnit:"d",def:"The typical number of days between a home being listed and going under contract. Fewer days means homes are selling faster."});}
   return signals;
 }
 
@@ -1932,39 +2217,10 @@ function renderHealthIndicators(containerId,area){
   var signals=calcHealthSignals(area);
   if(!signals||!signals.length){el.innerHTML="";return;}
   var cityName=(AREA_LABELS_MAP[area]||area).replace(/—.*/,"").replace(/[(].*/,"").trim();
-  var out='<div class="health-section"><div class="health-head">Market health — '+cityName+'</div><div class="health-grid">';
-  signals.forEach(function(sig){
-    var vals=sig.spark.filter(Boolean);
-    var mx=Math.max.apply(null,vals),mn=Math.min.apply(null,vals),range=mx-mn||1;
-    var pts=sig.spark.map(function(v,i){if(v==null)return "";return (i/(sig.spark.length-1)*100).toFixed(1)+","+(30-(v-mn)/range*26).toFixed(1);}).filter(Boolean).join(" ");
-    var col=sig.dot==="green"?"#10B981":sig.dot==="amber"?"#F59E0B":"#EF4444";
-    out+='<div class="health-card">';
-    out+='<div class="hc-label">'+sig.title+'</div>';
-    out+='<div class="hc-status"><span class="hc-dot '+sig.dot+'"></span>'+sig.label+'</div>';
-    out+=(function(){
-      var arr=sig.spark.filter(function(x){return x!=null;});
-      if(arr.length<2)return '<svg class="hc-sparkline" viewBox="0 0 100 30"></svg>';
-      var mxv=Math.max.apply(null,arr),mnv=Math.min.apply(null,arr),rg=mxv-mnv||1;
-      var n=sig.spark.length, line='', area='', fx=null, lx=null, started=false;
-      sig.spark.forEach(function(val,idx){
-        if(val==null)return;
-        var px=(idx/(n-1)*100), py=(28-(val-mnv)/rg*24+2);
-        line+=(started?'L':'M')+px.toFixed(1)+' '+py.toFixed(1)+' ';
-        area+=(started?'L':'M')+px.toFixed(1)+' '+py.toFixed(1)+' ';
-        if(!started){fx=px;}lx=px;started=true;
-      });
-      area+='L'+lx.toFixed(1)+' 30 L'+fx.toFixed(1)+' 30 Z';
-      var valsAttr=sig.spark.map(function(v){return v==null?'':v;}).join('|');
-      var lblAttr=(sig.sparkLabels||[]).join('|');
-      return '<svg class="hc-sparkline" viewBox="0 0 100 30" preserveAspectRatio="none" data-vals="'+valsAttr+'" data-labels="'+lblAttr+'" data-unit="'+(sig.sparkUnit||'')+'">'
-        +'<path d="'+area+'" fill="'+col+'" fill-opacity="0.10"/>'
-        +'<path d="'+line+'" fill="none" stroke="'+col+'" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>'
-        +'</svg>';})();
-    out+='<div class="hc-buyer"><b>For buyers:</b> '+sig.buyer+'<br><b>For sellers:</b> '+sig.seller+'</div>';
-    out+='<div class="hc-val">'+sig.val+'</div></div>';
-  });
-  out+='</div><p style="font-size:11px;color:var(--muted);margin-top:8px">All signals calculated from TRREB Market Watch data.</p></div>';
-  el.innerHTML=out;
+  var as=[{label:cityName+' \u00b7 '+state.type,type:state.type,color:SLOT_COLORS[0],data:cmpSeries({area:area,type:state.type})}];
+  el.innerHTML='<div id="'+containerId+'Inner"></div>';
+  var inner=document.getElementById(containerId+'Inner');
+  if(inner)renderConsolidatedHealthCharts(as,inner);
 }
 
 /* ======= COMPARE VERDICT ======= */
@@ -2032,7 +2288,7 @@ renderCompare=function(){
 
 /* ======= CONSOLIDATED MULTI-CITY HEALTH CHARTS ======= */
 function renderConsolidatedHealthCharts(as,el){
-  var W=460,H=190,PD={t:16,r:14,b:28,l:52};
+  var W=460,H=190,PD={t:16,r:14,b:28,l:64};
   var allYms=cmpAlignedMonths(as);
   var maps=cmpSeriesMaps(as);
   var N=allYms.length;
@@ -2048,14 +2304,22 @@ function renderConsolidatedHealthCharts(as,el){
     for(var i=0;i<=4;i++){var v=yMin+(yMax-yMin)*i/4,yy=cy(v);
       var lab=cfg.fmt(v);
       s+='<line x1="'+PD.l+'" x2="'+(W-PD.r)+'" y1="'+yy+'" y2="'+yy+'" stroke="#E6E9F2"/>';
-      s+='<text x="'+(PD.l-6)+'" y="'+(yy+4)+'" text-anchor="end" font-size="13" fill="#61697E" font-family="Spline Sans Mono,monospace">'+lab+'</text>';
+      s+='<text x="'+(PD.l-6)+'" y="'+(yy+4)+'" text-anchor="end" font-size="13" font-weight="600" fill="#3A4459" font-family="Spline Sans Mono,monospace">'+lab+'</text>';
     }
     var xstep=Math.ceil(N/6);
-    allYms.forEach(function(ym,i){if(i%xstep===0||i===N-1)
-      s+='<text x="'+cx(i)+'" y="'+(H-6)+'" text-anchor="middle" font-size="11" fill="#61697E" font-family="Spline Sans Mono,monospace">'+ymShort(ym)+'</text>';});
+    var xShown=[];
+    allYms.forEach(function(ym,i){if(i%xstep===0)xShown.push(i);});
+    if(xShown[xShown.length-1]!==N-1){
+      if(N-1-xShown[xShown.length-1]>=xstep*0.6)xShown.push(N-1);
+      else xShown[xShown.length-1]=N-1;
+    }
+    xShown.forEach(function(i){
+      var anchor=i===0?'start':(i===N-1?'end':'middle');
+      s+='<text x="'+cx(i)+'" y="'+(H-6)+'" text-anchor="'+anchor+'" font-size="13" font-weight="600" fill="#3A4459" font-family="Spline Sans Mono,monospace">'+ymShort(allYms[i])+'</text>';
+    });
     if(cfg.ref!=null&&cfg.ref>yMin&&cfg.ref<yMax){var yr=cy(cfg.ref);
       s+='<line x1="'+PD.l+'" x2="'+(W-PD.r)+'" y1="'+yr+'" y2="'+yr+'" stroke="#0E1526" stroke-width="1" stroke-dasharray="2 4" opacity=".4"/>';
-      s+='<text x="'+(PD.l+4)+'" y="'+(yr-4)+'" font-size="9.5" fill="#61697E" font-family="Spline Sans Mono,monospace">'+cfg.refLabel+'</text>';
+      s+='<text x="'+(PD.l+4)+'" y="'+(yr-4)+'" font-size="11" font-weight="600" fill="#4A5568" font-family="Spline Sans Mono,monospace">'+cfg.refLabel+'</text>';
     }
     as.forEach(function(sr,si){
       var map=maps[si];
@@ -2076,7 +2340,7 @@ function renderConsolidatedHealthCharts(as,el){
     return '<div style="background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow:hidden">'
       +'<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:6px">'+cfg.label+'</div>'
       +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">'+vStr+'</div>'
-      +'<svg class="cmphc-chart" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" style="display:block;width:100%;height:130px;cursor:crosshair">'+s+'</svg>'
+      +'<svg class="cmphc-chart" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" style="display:block;width:100%;height:130px;cursor:crosshair">'+s+'<line class="cmphc-hover-line" x1="0" x2="0" y1="'+PD.t+'" y2="'+(H-PD.b)+'" stroke="#0E1526" stroke-dasharray="3 4" opacity="0"/></svg>'
       +'<div style="font-size:11px;color:var(--muted);line-height:1.55;border-top:1px solid var(--line);padding-top:8px;margin-top:8px">'
       +'<b style="color:var(--ink)">Buyers:</b> '+cfg.buyer+'&ensp;<b style="color:var(--ink)">Sellers:</b> '+cfg.seller+'</div>'
       +'</div>';
@@ -2100,7 +2364,7 @@ function renderConsolidatedHealthCharts(as,el){
   ];
   var grid=cfgs.map(function(c){return mkChart(c);}).join('');
   var body=el.querySelector('.acc-body');
-  var chartDiv='<div style="padding:4px 0"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">'+grid+'</div></div>';
+  var chartDiv='<div style="padding:4px 0"><div class="cmphc-grid">'+grid+'</div></div>';
   if(body)body.innerHTML=chartDiv;else el.innerHTML=chartDiv;
 }
 /* ======= END CONSOLIDATED HEALTH CHARTS ======= */
@@ -2121,12 +2385,33 @@ renderAnalysis=function(){
 
 
 /* ======= ECONOMIC INDICATORS ======= */
-const ECO_DATA={"gdp_yoy":{"2016-01":1.2,"2016-04":1.5,"2016-07":2.0,"2016-10":2.1,"2017-01":2.2,"2017-04":3.5,"2017-07":3.3,"2017-10":2.9,"2018-01":2.4,"2018-04":2.5,"2018-07":2.1,"2018-10":1.5,"2019-01":1.6,"2019-04":1.5,"2019-07":1.9,"2019-10":1.8,"2020-01":-0.4,"2020-04":-13.3,"2020-07":-5.3,"2020-10":-3.1,"2021-01":0.3,"2021-04":11.0,"2021-07":5.4,"2021-10":4.2,"2022-01":3.9,"2022-04":4.1,"2022-07":3.8,"2022-10":2.1,"2023-01":1.7,"2023-04":1.2,"2023-07":0.8,"2023-10":0.7,"2024-01":1.2,"2024-04":1.7,"2024-07":2.1,"2024-10":3.1,"2025-01":3.1,"2025-04":2.0,"2025-07":1.7,"2025-10":0.7,"2026-01":-0.1},"tor_emp_yoy":{"2017-01":1.1,"2017-06":2.3,"2017-12":2.8,"2018-01":2.5,"2018-06":1.8,"2018-12":1.5,"2019-01":2.1,"2019-06":2.5,"2019-12":2.9,"2020-03":-5.2,"2020-06":-12.1,"2020-09":-5.8,"2020-12":-4.1,"2021-03":-0.8,"2021-06":5.4,"2021-09":4.2,"2021-12":3.9,"2022-03":4.8,"2022-06":3.5,"2022-09":2.1,"2022-12":1.8,"2023-03":2.2,"2023-06":1.9,"2023-09":1.5,"2023-12":1.3,"2024-03":1.4,"2024-06":1.1,"2024-09":1.7,"2024-12":2.6,"2025-03":1.8,"2025-06":1.4,"2025-09":1.1,"2025-12":0.9,"2026-01":0.8,"2026-02":0.7,"2026-03":0.6},"tor_unemp":{"2016-01":6.8,"2016-02":6.5,"2016-03":6.3,"2016-04":6.4,"2016-05":6.2,"2016-06":6.4,"2016-07":6.3,"2016-08":6.2,"2016-09":5.9,"2016-10":6.0,"2016-11":5.9,"2016-12":5.8,"2017-01":5.7,"2017-02":5.6,"2017-03":5.4,"2017-04":5.5,"2017-05":5.3,"2017-06":5.4,"2017-07":5.5,"2017-08":5.3,"2017-09":5.0,"2017-10":4.9,"2017-11":4.8,"2017-12":4.9,"2018-01":5.0,"2018-02":4.9,"2018-03":5.1,"2018-04":5.0,"2018-05":5.2,"2018-06":5.1,"2018-07":5.3,"2018-08":5.1,"2018-09":5.0,"2018-10":5.2,"2018-11":5.1,"2018-12":5.3,"2019-01":5.5,"2019-02":5.3,"2019-03":5.4,"2019-04":5.2,"2019-05":5.0,"2019-06":5.1,"2019-07":5.3,"2019-08":5.2,"2019-09":5.1,"2019-10":5.0,"2019-11":5.2,"2019-12":5.1,"2020-01":5.3,"2020-02":5.1,"2020-03":7.8,"2020-04":13.9,"2020-05":15.2,"2020-06":13.1,"2020-07":10.8,"2020-08":9.7,"2020-09":9.2,"2020-10":8.9,"2020-11":9.1,"2020-12":9.0,"2021-01":9.4,"2021-02":9.2,"2021-03":8.9,"2021-04":9.7,"2021-05":9.3,"2021-06":8.4,"2021-07":7.8,"2021-08":7.2,"2021-09":6.7,"2021-10":6.2,"2021-11":5.9,"2021-12":5.6,"2022-01":5.4,"2022-02":5.2,"2022-03":5.0,"2022-04":4.9,"2022-05":4.7,"2022-06":4.9,"2022-07":5.1,"2022-08":5.0,"2022-09":5.2,"2022-10":5.3,"2022-11":5.5,"2022-12":5.7,"2023-01":5.9,"2023-02":6.0,"2023-03":6.1,"2023-04":6.2,"2023-05":6.1,"2023-06":6.3,"2023-07":6.5,"2023-08":6.7,"2023-09":6.9,"2023-10":7.0,"2023-11":7.1,"2023-12":7.2,"2024-01":7.3,"2024-02":7.2,"2024-03":7.5,"2024-04":7.6,"2024-05":7.7,"2024-06":7.6,"2024-07":7.7,"2024-08":8.0,"2024-09":8.0,"2024-10":8.0,"2024-11":8.1,"2024-12":8.4,"2025-01":8.5,"2025-02":8.6,"2025-03":8.7,"2025-04":8.4,"2025-05":8.3,"2025-06":8.2,"2025-07":8.1,"2025-08":8.0,"2025-09":7.9,"2025-10":8.0,"2025-11":8.1,"2025-12":8.2,"2026-01":8.3,"2026-02":8.2,"2026-03":8.1},"cpi_yoy":{"2017-01":2.13,"2017-02":2.05,"2017-03":1.56,"2017-04":1.64,"2017-05":1.32,"2017-06":1.01,"2017-07":1.16,"2017-08":1.4,"2017-09":1.55,"2017-10":1.39,"2017-11":2.1,"2017-12":1.87,"2018-01":1.7,"2018-02":2.16,"2018-03":2.31,"2018-04":2.22,"2018-05":2.22,"2018-06":2.45,"2018-07":2.99,"2018-08":2.84,"2018-09":2.22,"2018-10":2.44,"2018-11":1.68,"2018-12":1.99,"2019-01":1.44,"2019-02":1.51,"2019-03":1.88,"2019-04":2.03,"2019-05":2.4,"2019-06":2.02,"2019-07":2.01,"2019-08":1.94,"2019-09":1.87,"2019-10":1.86,"2019-11":2.17,"2019-12":2.25,"2020-01":2.4,"2020-02":2.16,"2020-03":0.89,"2020-04":-0.22,"2020-05":-0.37,"2020-06":0.66,"2020-07":0.15,"2020-08":0.15,"2020-09":0.51,"2020-10":0.66,"2020-11":0.95,"2020-12":0.73,"2021-01":1.02,"2021-02":1.09,"2021-03":2.2,"2021-04":3.39,"2021-05":3.6,"2021-06":3.06,"2021-07":3.72,"2021-08":4.09,"2021-09":4.38,"2021-10":4.65,"2021-11":4.72,"2021-12":4.8,"2022-01":5.14,"2022-02":5.69,"2022-03":6.66,"2022-04":6.77,"2022-05":7.73,"2022-06":8.13,"2022-07":7.59,"2022-08":7.01,"2022-09":6.86,"2022-10":6.88,"2022-11":6.8,"2022-12":6.32,"2023-01":5.92,"2023-02":5.25,"2023-03":4.3,"2023-04":4.41,"2023-05":3.36,"2023-06":2.81,"2023-07":3.27,"2023-08":4.0,"2023-09":3.8,"2023-10":3.12,"2023-11":3.12,"2023-12":3.4,"2024-01":2.86,"2024-02":2.78,"2024-03":2.9,"2024-04":2.69,"2024-05":2.87,"2024-06":2.67,"2024-07":2.53,"2024-08":1.95,"2024-09":1.64,"2024-10":2.02,"2024-11":1.89,"2024-12":1.83,"2025-01":1.9,"2025-02":2.64,"2025-03":2.32,"2025-04":1.74,"2025-05":1.73,"2025-06":1.86,"2025-07":1.73,"2025-08":1.85,"2025-09":2.36,"2025-10":2.16,"2025-11":2.22,"2025-12":2.36,"2026-01":2.29,"2026-02":1.78,"2026-03":2.39,"2026-04":2.82},"overnight":{"2016-01":0.5,"2016-02":0.5,"2016-03":0.5,"2016-04":0.5,"2016-05":0.5,"2016-06":0.5,"2016-07":0.5,"2016-08":0.5,"2016-09":0.5,"2016-10":0.5,"2016-11":0.5,"2016-12":0.5,"2017-01":0.5,"2017-02":0.5,"2017-03":0.5,"2017-04":0.5,"2017-05":0.5,"2017-06":0.5,"2017-07":0.67,"2017-08":0.75,"2017-09":0.96,"2017-10":1.0,"2017-11":1.0,"2017-12":1.0,"2018-01":1.12,"2018-02":1.25,"2018-03":1.25,"2018-04":1.25,"2018-05":1.25,"2018-06":1.25,"2018-07":1.42,"2018-08":1.5,"2018-09":1.5,"2018-10":1.57,"2018-11":1.75,"2018-12":1.75,"2019-01":1.75,"2019-02":1.75,"2019-03":1.75,"2019-04":1.75,"2019-05":1.75,"2019-06":1.75,"2019-07":1.75,"2019-08":1.75,"2019-09":1.75,"2019-10":1.75,"2019-11":1.75,"2019-12":1.75,"2020-01":1.75,"2020-02":1.75,"2020-03":0.95,"2020-04":0.25,"2020-05":0.25,"2020-06":0.25,"2020-07":0.25,"2020-08":0.25,"2020-09":0.25,"2020-10":0.25,"2020-11":0.25,"2020-12":0.25,"2021-01":0.25,"2021-02":0.25,"2021-03":0.25,"2021-04":0.25,"2021-05":0.25,"2021-06":0.25,"2021-07":0.25,"2021-08":0.25,"2021-09":0.25,"2021-10":0.25,"2021-11":0.25,"2021-12":0.25,"2022-01":0.25,"2022-02":0.25,"2022-03":0.48,"2022-04":0.79,"2022-05":1.0,"2022-06":1.48,"2022-07":2.07,"2022-08":2.5,"2022-09":3.07,"2022-10":3.32,"2022-11":3.75,"2022-12":4.13,"2023-01":4.3,"2023-02":4.5,"2023-03":4.5,"2023-04":4.5,"2023-05":4.5,"2023-06":4.69,"2023-07":4.9,"2023-08":5.0,"2023-09":5.0,"2023-10":5.0,"2023-11":5.0,"2023-12":5.0,"2024-01":5.0,"2024-02":5.0,"2024-03":5.0,"2024-04":5.0,"2024-05":5.0,"2024-06":4.79,"2024-07":4.7,"2024-08":4.5,"2024-09":4.29,"2024-10":4.12,"2024-11":3.75,"2024-12":3.43,"2025-01":3.23,"2025-02":3.0,"2025-03":2.85,"2025-04":2.75,"2025-05":2.75,"2025-06":2.75,"2025-07":2.75,"2025-08":2.75,"2025-09":2.65,"2025-10":2.48,"2025-11":2.25,"2025-12":2.25,"2026-01":2.25,"2026-02":2.25,"2026-03":2.25,"2026-04":2.25,"2026-05":2.25},"prime":{"2016-01":0.52,"2016-02":0.5,"2016-03":0.5,"2016-04":0.5,"2016-05":0.5,"2016-06":0.5,"2016-07":0.51,"2016-08":0.49,"2016-09":0.5,"2016-10":0.49,"2016-11":0.49,"2016-12":0.49,"2017-01":0.49,"2017-02":0.49,"2017-03":0.5,"2017-04":0.5,"2017-05":0.49,"2017-06":0.49,"2017-07":0.74,"2017-08":0.75,"2017-09":0.99,"2017-10":1.0,"2017-11":0.99,"2017-12":1.0,"2018-01":1.25,"2018-02":1.24,"2018-03":1.25,"2018-04":1.25,"2018-05":1.24,"2018-06":1.25,"2018-07":1.49,"2018-08":1.5,"2018-09":1.5,"2018-10":1.75,"2018-11":1.75,"2018-12":1.75,"2019-01":1.75,"2019-02":1.75,"2019-03":1.75,"2019-04":1.75,"2019-05":1.75,"2019-06":1.74,"2019-07":1.75,"2019-08":1.75,"2019-09":1.75,"2019-10":1.75,"2019-11":1.75,"2019-12":1.75,"2020-01":1.75,"2020-02":1.75,"2020-03":0.74,"2020-04":0.23,"2020-05":0.24,"2020-06":0.23,"2020-07":0.24,"2020-08":0.23,"2020-09":0.22,"2020-10":0.23,"2020-11":0.23,"2020-12":0.17,"2021-01":0.18,"2021-02":0.21,"2021-03":0.15,"2021-04":0.17,"2021-05":0.19,"2021-06":0.19,"2021-07":0.19,"2021-08":0.2,"2021-09":0.18,"2021-10":0.2,"2021-11":0.21,"2021-12":0.13,"2022-01":0.18,"2022-02":0.18,"2022-03":0.44,"2022-04":0.92,"2022-05":0.95,"2022-06":1.45,"2022-07":2.47,"2022-08":2.48,"2022-09":3.21,"2022-10":3.23,"2022-11":3.75,"2022-12":4.25,"2023-01":4.25,"2023-02":4.48,"2023-03":4.5,"2023-04":4.49,"2023-05":4.49,"2023-06":4.74,"2023-07":4.99,"2023-08":5.0,"2023-09":4.99,"2023-10":5.01,"2023-11":5.01,"2023-12":5.02,"2024-01":5.03,"2024-02":5.0,"2024-03":5.0,"2024-04":5.0,"2024-05":5.0,"2024-06":4.76,"2024-07":4.51,"2024-08":4.51,"2024-09":4.27,"2024-10":3.78,"2024-11":3.76,"2024-12":3.28,"2025-01":3.27,"2025-02":2.98,"2025-03":2.74,"2025-04":2.74,"2025-05":2.74,"2025-06":2.74,"2025-07":2.75,"2025-08":2.76,"2025-09":2.48,"2025-10":2.5,"2025-11":2.23,"2025-12":2.27,"2026-01":2.25,"2026-02":2.25,"2026-03":2.26,"2026-04":2.24,"2026-05":2.24},"mortgage5":{"2016-01":4.64,"2016-02":4.64,"2016-03":4.64,"2016-04":4.64,"2016-05":4.64,"2016-06":4.64,"2016-07":4.74,"2016-08":4.74,"2016-09":4.64,"2016-10":4.64,"2016-11":4.64,"2016-12":4.64,"2017-01":4.64,"2017-02":4.64,"2017-03":4.64,"2017-04":4.64,"2017-05":4.64,"2017-06":4.64,"2017-07":4.74,"2017-08":4.84,"2017-09":4.85,"2017-10":4.92,"2017-11":4.99,"2017-12":4.99,"2018-01":5.08,"2018-02":5.14,"2018-03":5.14,"2018-04":5.14,"2018-05":5.3,"2018-06":5.34,"2018-07":5.34,"2018-08":5.34,"2018-09":5.34,"2018-10":5.34,"2018-11":5.34,"2018-12":5.34,"2019-01":5.34,"2019-02":5.34,"2019-03":5.34,"2019-04":5.34,"2019-05":5.34,"2019-06":5.34,"2019-07":5.25,"2019-08":5.19,"2019-09":5.19,"2019-10":5.19,"2019-11":5.19,"2019-12":5.19,"2020-01":5.19,"2020-02":5.19,"2020-03":5.12,"2020-04":5.04,"2020-05":4.99,"2020-06":4.94,"2020-07":4.94,"2020-08":4.83,"2020-09":4.79,"2020-10":4.79,"2020-11":4.79,"2020-12":4.79,"2021-01":4.79,"2021-02":4.79,"2021-03":4.79,"2021-04":4.79,"2021-05":4.79,"2021-06":4.79,"2021-07":4.79,"2021-08":4.79,"2021-09":4.79,"2021-10":4.79,"2021-11":4.79,"2021-12":4.79,"2022-01":4.79,"2022-02":4.79,"2022-03":4.79,"2022-04":4.89,"2022-05":5.09,"2022-06":5.7,"2022-07":6.06,"2022-08":6.14,"2022-09":6.14,"2022-10":6.31,"2022-11":6.49,"2022-12":6.49,"2023-01":6.49,"2023-02":6.49,"2023-03":6.49,"2023-04":6.49,"2023-05":6.49,"2023-06":6.49,"2023-07":6.49,"2023-08":6.8,"2023-09":6.84,"2023-10":7.04,"2023-11":7.04,"2023-12":7.04,"2024-01":6.95,"2024-02":6.83,"2024-03":6.84,"2024-04":6.84,"2024-05":6.84,"2024-06":6.84,"2024-07":6.79,"2024-08":6.69,"2024-09":6.59,"2024-10":6.49,"2024-11":6.49,"2024-12":6.49,"2025-01":6.49,"2025-02":6.49,"2025-03":6.49,"2025-04":6.49,"2025-05":6.19,"2025-06":6.09,"2025-07":6.09,"2025-08":6.09,"2025-09":6.09,"2025-10":6.09,"2025-11":6.09,"2025-12":6.09,"2026-01":6.09,"2026-02":6.09,"2026-03":6.09,"2026-04":6.09,"2026-05":6.09}};
+const ECO_DATA={"gdp_yoy":{"2016-01":1.2,"2016-04":1.5,"2016-07":2.0,"2016-10":2.1,"2017-01":2.2,"2017-04":3.5,"2017-07":3.3,"2017-10":2.9,"2018-01":2.4,"2018-04":2.5,"2018-07":2.1,"2018-10":1.5,"2019-01":1.6,"2019-04":1.5,"2019-07":1.9,"2019-10":1.8,"2020-01":-0.4,"2020-04":-13.3,"2020-07":-5.3,"2020-10":-3.1,"2021-01":0.3,"2021-04":11.0,"2021-07":5.4,"2021-10":4.2,"2022-01":3.9,"2022-04":4.1,"2022-07":3.8,"2022-10":2.1,"2023-01":1.7,"2023-04":1.2,"2023-07":0.8,"2023-10":0.7,"2024-01":1.2,"2024-04":1.7,"2024-07":2.1,"2024-10":3.1,"2025-01":3.1,"2025-04":2.0,"2025-07":1.7,"2025-10":0.7,"2026-01":-0.1},"tor_emp_yoy":{"2017-01":1.1,"2017-06":2.3,"2017-12":2.8,"2018-01":2.5,"2018-06":1.8,"2018-12":1.5,"2019-01":2.1,"2019-06":2.5,"2019-12":2.9,"2020-03":-5.2,"2020-06":-12.1,"2020-09":-5.8,"2020-12":-4.1,"2021-03":-0.8,"2021-06":5.4,"2021-09":4.2,"2021-12":3.9,"2022-03":4.8,"2022-06":3.5,"2022-09":2.1,"2022-12":1.8,"2023-03":2.2,"2023-06":1.9,"2023-09":1.5,"2023-12":1.3,"2024-03":1.4,"2024-06":1.1,"2024-09":1.7,"2024-12":2.6,"2025-03":1.8,"2025-06":1.4,"2025-09":1.1,"2025-12":0.9,"2026-01":0.8,"2026-02":0.7,"2026-03":0.6},"tor_unemp":{"2016-01":6.8,"2016-02":6.5,"2016-03":6.3,"2016-04":6.4,"2016-05":6.2,"2016-06":6.4,"2016-07":6.3,"2016-08":6.2,"2016-09":5.9,"2016-10":6.0,"2016-11":5.9,"2016-12":5.8,"2017-01":5.7,"2017-02":5.6,"2017-03":5.4,"2017-04":5.5,"2017-05":5.3,"2017-06":5.4,"2017-07":5.5,"2017-08":5.3,"2017-09":5.0,"2017-10":4.9,"2017-11":4.8,"2017-12":4.9,"2018-01":5.0,"2018-02":4.9,"2018-03":5.1,"2018-04":5.0,"2018-05":5.2,"2018-06":5.1,"2018-07":5.3,"2018-08":5.1,"2018-09":5.0,"2018-10":5.2,"2018-11":5.1,"2018-12":5.3,"2019-01":5.5,"2019-02":5.3,"2019-03":5.4,"2019-04":5.2,"2019-05":5.0,"2019-06":5.1,"2019-07":5.3,"2019-08":5.2,"2019-09":5.1,"2019-10":5.0,"2019-11":5.2,"2019-12":5.1,"2020-01":5.3,"2020-02":5.1,"2020-03":7.8,"2020-04":13.9,"2020-05":15.2,"2020-06":13.1,"2020-07":10.8,"2020-08":9.7,"2020-09":9.2,"2020-10":8.9,"2020-11":9.1,"2020-12":9.0,"2021-01":9.4,"2021-02":9.2,"2021-03":8.9,"2021-04":9.7,"2021-05":9.3,"2021-06":8.4,"2021-07":7.8,"2021-08":7.2,"2021-09":6.7,"2021-10":6.2,"2021-11":5.9,"2021-12":5.6,"2022-01":5.4,"2022-02":5.2,"2022-03":5.0,"2022-04":4.9,"2022-05":4.7,"2022-06":4.9,"2022-07":5.1,"2022-08":5.0,"2022-09":5.2,"2022-10":5.3,"2022-11":5.5,"2022-12":5.7,"2023-01":5.9,"2023-02":6.0,"2023-03":6.1,"2023-04":6.2,"2023-05":6.1,"2023-06":6.3,"2023-07":6.5,"2023-08":6.7,"2023-09":6.9,"2023-10":7.0,"2023-11":7.1,"2023-12":7.2,"2024-01":7.3,"2024-02":7.2,"2024-03":7.5,"2024-04":7.6,"2024-05":7.7,"2024-06":7.6,"2024-07":7.7,"2024-08":8.0,"2024-09":8.0,"2024-10":8.0,"2024-11":8.1,"2024-12":8.4,"2025-01":8.5,"2025-02":8.6,"2025-03":8.7,"2025-04":8.4,"2025-05":8.3,"2025-06":8.2,"2025-07":8.1,"2025-08":8.0,"2025-09":7.9,"2025-10":8.0,"2025-11":8.1,"2025-12":8.2,"2026-01":8.3,"2026-02":8.2,"2026-03":8.1},"cpi_yoy":{"2017-01":2.13,"2017-02":2.05,"2017-03":1.56,"2017-04":1.64,"2017-05":1.32,"2017-06":1.01,"2017-07":1.16,"2017-08":1.4,"2017-09":1.55,"2017-10":1.39,"2017-11":2.1,"2017-12":1.87,"2018-01":1.7,"2018-02":2.16,"2018-03":2.31,"2018-04":2.22,"2018-05":2.22,"2018-06":2.45,"2018-07":2.99,"2018-08":2.84,"2018-09":2.22,"2018-10":2.44,"2018-11":1.68,"2018-12":1.99,"2019-01":1.44,"2019-02":1.51,"2019-03":1.88,"2019-04":2.03,"2019-05":2.4,"2019-06":2.02,"2019-07":2.01,"2019-08":1.94,"2019-09":1.87,"2019-10":1.86,"2019-11":2.17,"2019-12":2.25,"2020-01":2.4,"2020-02":2.16,"2020-03":0.89,"2020-04":-0.22,"2020-05":-0.37,"2020-06":0.66,"2020-07":0.15,"2020-08":0.15,"2020-09":0.51,"2020-10":0.66,"2020-11":0.95,"2020-12":0.73,"2021-01":1.02,"2021-02":1.09,"2021-03":2.2,"2021-04":3.39,"2021-05":3.6,"2021-06":3.06,"2021-07":3.72,"2021-08":4.09,"2021-09":4.38,"2021-10":4.65,"2021-11":4.72,"2021-12":4.8,"2022-01":5.14,"2022-02":5.69,"2022-03":6.66,"2022-04":6.77,"2022-05":7.73,"2022-06":8.13,"2022-07":7.59,"2022-08":7.01,"2022-09":6.86,"2022-10":6.88,"2022-11":6.8,"2022-12":6.32,"2023-01":5.92,"2023-02":5.25,"2023-03":4.3,"2023-04":4.41,"2023-05":3.36,"2023-06":2.81,"2023-07":3.27,"2023-08":4.0,"2023-09":3.8,"2023-10":3.12,"2023-11":3.12,"2023-12":3.4,"2024-01":2.86,"2024-02":2.78,"2024-03":2.9,"2024-04":2.69,"2024-05":2.87,"2024-06":2.67,"2024-07":2.53,"2024-08":1.95,"2024-09":1.64,"2024-10":2.02,"2024-11":1.89,"2024-12":1.83,"2025-01":1.9,"2025-02":2.64,"2025-03":2.32,"2025-04":1.74,"2025-05":1.73,"2025-06":1.86,"2025-07":1.73,"2025-08":1.85,"2025-09":2.36,"2025-10":2.16,"2025-11":2.22,"2025-12":2.36,"2026-01":2.29,"2026-02":1.78,"2026-03":2.39,"2026-04":2.82},"overnight":{"2016-01":0.5,"2016-02":0.5,"2016-03":0.5,"2016-04":0.5,"2016-05":0.5,"2016-06":0.5,"2016-07":0.5,"2016-08":0.5,"2016-09":0.5,"2016-10":0.5,"2016-11":0.5,"2016-12":0.5,"2017-01":0.5,"2017-02":0.5,"2017-03":0.5,"2017-04":0.5,"2017-05":0.5,"2017-06":0.5,"2017-07":0.67,"2017-08":0.75,"2017-09":0.96,"2017-10":1.0,"2017-11":1.0,"2017-12":1.0,"2018-01":1.12,"2018-02":1.25,"2018-03":1.25,"2018-04":1.25,"2018-05":1.25,"2018-06":1.25,"2018-07":1.42,"2018-08":1.5,"2018-09":1.5,"2018-10":1.57,"2018-11":1.75,"2018-12":1.75,"2019-01":1.75,"2019-02":1.75,"2019-03":1.75,"2019-04":1.75,"2019-05":1.75,"2019-06":1.75,"2019-07":1.75,"2019-08":1.75,"2019-09":1.75,"2019-10":1.75,"2019-11":1.75,"2019-12":1.75,"2020-01":1.75,"2020-02":1.75,"2020-03":0.95,"2020-04":0.25,"2020-05":0.25,"2020-06":0.25,"2020-07":0.25,"2020-08":0.25,"2020-09":0.25,"2020-10":0.25,"2020-11":0.25,"2020-12":0.25,"2021-01":0.25,"2021-02":0.25,"2021-03":0.25,"2021-04":0.25,"2021-05":0.25,"2021-06":0.25,"2021-07":0.25,"2021-08":0.25,"2021-09":0.25,"2021-10":0.25,"2021-11":0.25,"2021-12":0.25,"2022-01":0.25,"2022-02":0.25,"2022-03":0.48,"2022-04":0.79,"2022-05":1.0,"2022-06":1.48,"2022-07":2.07,"2022-08":2.5,"2022-09":3.07,"2022-10":3.32,"2022-11":3.75,"2022-12":4.13,"2023-01":4.3,"2023-02":4.5,"2023-03":4.5,"2023-04":4.5,"2023-05":4.5,"2023-06":4.69,"2023-07":4.9,"2023-08":5.0,"2023-09":5.0,"2023-10":5.0,"2023-11":5.0,"2023-12":5.0,"2024-01":5.0,"2024-02":5.0,"2024-03":5.0,"2024-04":5.0,"2024-05":5.0,"2024-06":4.79,"2024-07":4.7,"2024-08":4.5,"2024-09":4.29,"2024-10":4.12,"2024-11":3.75,"2024-12":3.43,"2025-01":3.23,"2025-02":3.0,"2025-03":2.85,"2025-04":2.75,"2025-05":2.75,"2025-06":2.75,"2025-07":2.75,"2025-08":2.75,"2025-09":2.65,"2025-10":2.48,"2025-11":2.25,"2025-12":2.25,"2026-01":2.25,"2026-02":2.25,"2026-03":2.25,"2026-04":2.25,"2026-05":2.25,"2026-06":2.25,"2026-07":2.25},"prime":{"2016-01":0.52,"2016-02":0.5,"2016-03":0.5,"2016-04":0.5,"2016-05":0.5,"2016-06":0.5,"2016-07":0.51,"2016-08":0.49,"2016-09":0.5,"2016-10":0.49,"2016-11":0.49,"2016-12":0.49,"2017-01":0.49,"2017-02":0.49,"2017-03":0.5,"2017-04":0.5,"2017-05":0.49,"2017-06":0.49,"2017-07":0.74,"2017-08":0.75,"2017-09":0.99,"2017-10":1.0,"2017-11":0.99,"2017-12":1.0,"2018-01":1.25,"2018-02":1.24,"2018-03":1.25,"2018-04":1.25,"2018-05":1.24,"2018-06":1.25,"2018-07":1.49,"2018-08":1.5,"2018-09":1.5,"2018-10":1.75,"2018-11":1.75,"2018-12":1.75,"2019-01":1.75,"2019-02":1.75,"2019-03":1.75,"2019-04":1.75,"2019-05":1.75,"2019-06":1.74,"2019-07":1.75,"2019-08":1.75,"2019-09":1.75,"2019-10":1.75,"2019-11":1.75,"2019-12":1.75,"2020-01":1.75,"2020-02":1.75,"2020-03":0.74,"2020-04":0.23,"2020-05":0.24,"2020-06":0.23,"2020-07":0.24,"2020-08":0.23,"2020-09":0.22,"2020-10":0.23,"2020-11":0.23,"2020-12":0.17,"2021-01":0.18,"2021-02":0.21,"2021-03":0.15,"2021-04":0.17,"2021-05":0.19,"2021-06":0.19,"2021-07":0.19,"2021-08":0.2,"2021-09":0.18,"2021-10":0.2,"2021-11":0.21,"2021-12":0.13,"2022-01":0.18,"2022-02":0.18,"2022-03":0.44,"2022-04":0.92,"2022-05":0.95,"2022-06":1.45,"2022-07":2.47,"2022-08":2.48,"2022-09":3.21,"2022-10":3.23,"2022-11":3.75,"2022-12":4.25,"2023-01":4.25,"2023-02":4.48,"2023-03":4.5,"2023-04":4.49,"2023-05":4.49,"2023-06":4.74,"2023-07":4.99,"2023-08":5.0,"2023-09":4.99,"2023-10":5.01,"2023-11":5.01,"2023-12":5.02,"2024-01":5.03,"2024-02":5.0,"2024-03":5.0,"2024-04":5.0,"2024-05":5.0,"2024-06":4.76,"2024-07":4.51,"2024-08":4.51,"2024-09":4.27,"2024-10":3.78,"2024-11":3.76,"2024-12":3.28,"2025-01":3.27,"2025-02":2.98,"2025-03":2.74,"2025-04":2.74,"2025-05":2.74,"2025-06":2.74,"2025-07":2.75,"2025-08":2.76,"2025-09":2.48,"2025-10":2.5,"2025-11":2.23,"2025-12":2.27,"2026-01":2.25,"2026-02":2.25,"2026-03":2.26,"2026-04":2.24,"2026-05":2.24},"mortgage5":{"2016-01":4.64,"2016-02":4.64,"2016-03":4.64,"2016-04":4.64,"2016-05":4.64,"2016-06":4.64,"2016-07":4.74,"2016-08":4.74,"2016-09":4.64,"2016-10":4.64,"2016-11":4.64,"2016-12":4.64,"2017-01":4.64,"2017-02":4.64,"2017-03":4.64,"2017-04":4.64,"2017-05":4.64,"2017-06":4.64,"2017-07":4.74,"2017-08":4.84,"2017-09":4.85,"2017-10":4.92,"2017-11":4.99,"2017-12":4.99,"2018-01":5.08,"2018-02":5.14,"2018-03":5.14,"2018-04":5.14,"2018-05":5.3,"2018-06":5.34,"2018-07":5.34,"2018-08":5.34,"2018-09":5.34,"2018-10":5.34,"2018-11":5.34,"2018-12":5.34,"2019-01":5.34,"2019-02":5.34,"2019-03":5.34,"2019-04":5.34,"2019-05":5.34,"2019-06":5.34,"2019-07":5.25,"2019-08":5.19,"2019-09":5.19,"2019-10":5.19,"2019-11":5.19,"2019-12":5.19,"2020-01":5.19,"2020-02":5.19,"2020-03":5.12,"2020-04":5.04,"2020-05":4.99,"2020-06":4.94,"2020-07":4.94,"2020-08":4.83,"2020-09":4.79,"2020-10":4.79,"2020-11":4.79,"2020-12":4.79,"2021-01":4.79,"2021-02":4.79,"2021-03":4.79,"2021-04":4.79,"2021-05":4.79,"2021-06":4.79,"2021-07":4.79,"2021-08":4.79,"2021-09":4.79,"2021-10":4.79,"2021-11":4.79,"2021-12":4.79,"2022-01":4.79,"2022-02":4.79,"2022-03":4.79,"2022-04":4.89,"2022-05":5.09,"2022-06":5.7,"2022-07":6.06,"2022-08":6.14,"2022-09":6.14,"2022-10":6.31,"2022-11":6.49,"2022-12":6.49,"2023-01":6.49,"2023-02":6.49,"2023-03":6.49,"2023-04":6.49,"2023-05":6.49,"2023-06":6.49,"2023-07":6.49,"2023-08":6.8,"2023-09":6.84,"2023-10":7.04,"2023-11":7.04,"2023-12":7.04,"2024-01":6.95,"2024-02":6.83,"2024-03":6.84,"2024-04":6.84,"2024-05":6.84,"2024-06":6.84,"2024-07":6.79,"2024-08":6.69,"2024-09":6.59,"2024-10":6.49,"2024-11":6.49,"2024-12":6.49,"2025-01":6.49,"2025-02":6.49,"2025-03":6.49,"2025-04":6.49,"2025-05":6.19,"2025-06":6.09,"2025-07":6.09,"2025-08":6.09,"2025-09":6.09,"2025-10":6.09,"2025-11":6.09,"2025-12":6.09,"2026-01":6.09,"2026-02":6.09,"2026-03":6.09,"2026-04":6.09,"2026-05":6.09,"2026-06":6.09,"2026-07":6.09}};
+/* Shared axis-label builder for every sparkline (Economic Context + Market
+   Health). Sparklines previously shipped with zero axis text - value and
+   date only appeared on hover. This renders a visible High/Low line above
+   the chart and a start->end period line below it, so the range reads
+   without needing to hover. Top-level scope so both renderHealthIndicators
+   and renderEconomicIndicators (separate functions) can call it. */
+function sparkAxisHtml(vals,labels,unit){
+  var arr=vals.filter(function(x){return x!=null;});
+  if(arr.length<2)return {y:'',x:''};
+  var mx=Math.max.apply(null,arr),mn=Math.min.apply(null,arr);
+  var dp=(Math.abs(mx)<10&&Math.abs(mn)<10)?1:0;
+  var maxLbl=mx.toFixed(dp)+(unit||''),minLbl=mn.toFixed(dp)+(unit||'');
+  var firstIdx=null,lastIdx=null;
+  vals.forEach(function(val,i){if(val!=null){if(firstIdx===null)firstIdx=i;lastIdx=i;}});
+  var startLbl=(labels&&labels[firstIdx]!=null)?ymLabel(labels[firstIdx]):'';
+  var endLbl=(labels&&labels[lastIdx]!=null)?ymLabel(labels[lastIdx]):'';
+  return {
+    y:'<div class="hc-spark-yaxis">High <b>'+maxLbl+'</b> &middot; Low <b>'+minLbl+'</b></div>',
+    x:(startLbl||endLbl)?'<div class="hc-spark-xaxis"><span>'+startLbl+'</span><span>'+endLbl+'</span></div>':''
+  };
+}
 function renderEconomicIndicators(containerId,view){
   var el=document.getElementById(containerId);if(!el)return;
   function spark(vals,color,labels,unit){
     var v=vals.filter(function(x){return x!=null;});
-    if(v.length<2)return '<svg class="hc-sparkline" viewBox="0 0 100 30" preserveAspectRatio="none"></svg>';
+    if(v.length<2)return '<div class="hc-spark-wrap"><svg class="hc-sparkline" viewBox="0 0 100 30" preserveAspectRatio="none"></svg></div>';
     var mx=Math.max.apply(null,v),mn=Math.min.apply(null,v),range=mx-mn||0.01;
     var pts=vals.map(function(val,i){if(val==null)return null;return (i/(vals.length-1)*100).toFixed(1)+","+(30-(val-mn)/range*26).toFixed(1);}).filter(Boolean).join(" ");
     var n=vals.length, line='', area='', fx=null, lx=null, started=false;
@@ -2140,10 +2425,13 @@ function renderEconomicIndicators(containerId,view){
     area+='L'+lx.toFixed(1)+' 30 L'+fx.toFixed(1)+' 30 Z';
     var valsAttr=vals.map(function(v){return v==null?'':v;}).join('|');
     var labelsAttr=(labels||[]).join('|');
-    return '<svg class="hc-sparkline" viewBox="0 0 100 30" preserveAspectRatio="none" data-vals="'+valsAttr+'" data-labels="'+labelsAttr+'" data-unit="'+(unit||'')+'">'
+    var svg='<svg class="hc-sparkline" viewBox="0 0 100 30" preserveAspectRatio="none" data-vals="'+valsAttr+'" data-labels="'+labelsAttr+'" data-unit="'+(unit||'')+'">'
       +'<path d="'+area+'" fill="'+color+'" fill-opacity="0.10"/>'
       +'<path d="'+line+'" fill="none" stroke="'+color+'" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>'
+      +'<line class="spark-hover-line" x1="0" x2="0" y1="1" y2="29" stroke="#0E1526" stroke-dasharray="3 4" opacity="0" vector-effect="non-scaling-stroke"/>'
       +'</svg>';
+    var ax=sparkAxisHtml(vals,labels,unit);
+    return '<div class="hc-spark-wrap">'+ax.y+svg+ax.x+'</div>';
   }
   function card(t,src,val,unit,chg,vals,color,b,s2,labels,sparkUnit){
     var srcLinked=src
@@ -2163,13 +2451,13 @@ function renderEconomicIndicators(containerId,view){
     +'<p style="font-size:12px;color:var(--muted);margin-bottom:12px">Key indicators affecting buyer borrowing power and housing demand. Sources: <a href="https://www.bankofcanada.ca" target="_blank" rel="noopener noreferrer" style="color:#0C447C;font-weight:600;text-decoration:underline;text-underline-offset:2px">Bank of Canada</a>, <a href="https://www.statcan.gc.ca" target="_blank" rel="noopener noreferrer" style="color:#0C447C;font-weight:600;text-decoration:underline;text-underline-offset:2px">Statistics Canada</a>.</p>'
     +'<div class="health-grid">';
   var g=ECO_DATA.gdp_yoy,gK=Object.keys(g).sort(),gL=lv(g);
-  out+=card("Canada real GDP growth","Statistics Canada - quarterly YoY %",gL!=null?gL.toFixed(1):"n/a","%","("+lk(g)+")",gK.map(function(k){return g[k];}),gL!=null&&gL>0?"#10B981":"#EF4444",gL!=null&&gL>1.5?"Growing economy means more confident buyers.":gL!=null&&gL>0?"Modest growth. Buyers cautious but active.":"Economy contracting. Buyers more hesitant.",gL!=null&&gL>1.5?"Strong economy supports home values.":"Soft GDP adds pricing pressure.",gK,"%");
+  out+=card("Canada real GDP growth","Statistics Canada - quarterly YoY %",gL!=null?gL.toFixed(1):"n/a","%","("+ymLabel(lk(g))+")",gK.map(function(k){return g[k];}),gL!=null&&gL>0?"#10B981":"#EF4444",gL!=null&&gL>1.5?"Growing economy means more confident buyers.":gL!=null&&gL>0?"Modest growth. Buyers cautious but active.":"Economy contracting. Buyers more hesitant.",gL!=null&&gL>1.5?"Strong economy supports home values.":"Soft GDP adds pricing pressure.",gK,"%");
   var e=ECO_DATA.tor_emp_yoy,eK=Object.keys(e).sort(),eL=lv(e);
-  out+=card("Toronto employment growth","Statistics Canada LFS - Toronto CMA YoY %",eL!=null?eL.toFixed(1):"n/a","%","("+lk(e)+")",eK.map(function(k){return e[k];}),eL!=null&&eL>0?"#10B981":"#EF4444",eL!=null&&eL>1?"More employed people means more qualified buyers.":"Employment growth slowing. Some buyers delayed.",eL!=null&&eL>0?"Growing employment supports housing demand.":"Weak job growth may soften demand.",eK,"%");
+  out+=card("Toronto employment growth","Statistics Canada LFS - Toronto CMA YoY %",eL!=null?eL.toFixed(1):"n/a","%","("+ymLabel(lk(e))+")",eK.map(function(k){return e[k];}),eL!=null&&eL>0?"#10B981":"#EF4444",eL!=null&&eL>1?"More employed people means more qualified buyers.":"Employment growth slowing. Some buyers delayed.",eL!=null&&eL>0?"Growing employment supports housing demand.":"Weak job growth may soften demand.",eK,"%");
   var u=ECO_DATA.tor_unemp,uK=Object.keys(u).sort(),uL=lv(u),uC=yc(u);
   out+=card("Toronto unemployment rate","Statistics Canada LFS - Toronto CMA 3-mo avg",uL!=null?uL.toFixed(1):"n/a","%",uC!=null?(parseFloat(uC)>=0?"+":"")+uC+"% vs yr ago":null,uK.map(function(k){return u[k];}),uL!=null&&uL<7?"#10B981":uL!=null&&uL<9?"#F59E0B":"#EF4444",uL!=null&&uL<7?"Low unemployment. Deep buyer pool.":uL!=null&&uL<9?"Moderate unemployment. Buyers present but selective.":"Elevated unemployment. Smaller buyer pool. More room to negotiate.",uL!=null&&uL<7?"Low unemployment supports demand.":"Higher unemployment reduces qualified buyers. Price competitively.",uK,"%");
   var c=ECO_DATA.cpi_yoy,cK=Object.keys(c).sort(),cL=lv(c);
-  out+=card("Canada inflation (CPI)","Statistics Canada - all-items CPI YoY %",cL!=null?cL.toFixed(1):"n/a","%","("+lk(c)+")",cK.map(function(k){return c[k];}),cL!=null&&cL<2.5?"#10B981":cL!=null&&cL<5?"#F59E0B":"#EF4444",cL!=null&&cL<2.5?"Near-target inflation. Rate cuts more likely.":"Elevated inflation. Borrowing costs staying higher.",cL!=null&&cL<2.5?"Low inflation supports housing prices.":"High inflation squeezes buyer budgets.",cK,"%");
+  out+=card("Canada inflation (CPI)","Statistics Canada - all-items CPI YoY %",cL!=null?cL.toFixed(1):"n/a","%","("+ymLabel(lk(c))+")",cK.map(function(k){return c[k];}),cL!=null&&cL<2.5?"#10B981":cL!=null&&cL<5?"#F59E0B":"#EF4444",cL!=null&&cL<2.5?"Near-target inflation. Rate cuts more likely.":"Elevated inflation. Borrowing costs staying higher.",cL!=null&&cL<2.5?"Low inflation supports housing prices.":"High inflation squeezes buyer budgets.",cK,"%");
   var o=ECO_DATA.overnight,oK=Object.keys(o).sort(),oL=lv(o),oC=yc(o);
   out+=card("Bank of Canada overnight rate","Bank of Canada - target policy rate",oL!=null?oL.toFixed(2):"n/a","%",oC!=null?(parseFloat(oC)>=0?"+":"")+oC+"% vs yr ago":null,oK.map(function(k){return o[k];}),oL!=null&&oL<=2.5?"#10B981":oL!=null&&oL<=4?"#F59E0B":"#EF4444",oL!=null&&oL<=2.5?"Low rate. Variable mortgages are cheaper.":oL!=null&&oL<=4?"Rates cutting. Variable rates improving.":"High rate. Fixed rate may offer more certainty.",oL!=null&&oL<=3?"Falling rates bring buyers back to market.":"Higher rates have reduced the buyer pool.",oK,"%");
   var p=ECO_DATA.prime,pK=Object.keys(p).sort(),pL=lv(p),pC=yc(p);
@@ -2178,6 +2466,13 @@ function renderEconomicIndicators(containerId,view){
   out+='</div><p style="font-size:11px;color:var(--muted);margin-top:8px">Sources: Bank of Canada, Statistics Canada. National and Toronto CMA indicators.</p></div>';
   el.innerHTML=out;
 }
+
+/* Old duplicate sparkline tooltip system removed - consolidated into the
+   single SPARKLINE HOVER TOOLTIPS system further down, which covers both
+   .hc-sparkline and .cmphc-chart with one tip element and one hover-line
+   convention. Having two separate systems attaching listeners to the same
+   .hc-sparkline elements was the root cause of the tooltip only working
+   inconsistently. */
 
 /* ============================================================
    PRINT MARKET REPORT
@@ -2340,6 +2635,19 @@ function buildAndPrintCompare(){
 /* ============================================================
    V10 RECREATED: CONSUMER SUMMARY + CALCULATOR-ALIGNED UI
    ============================================================ */
+/* wrapAccordion moved to top-level scope (was nested inside the IIFE below)
+   so the Plan My Move planner - a separate IIFE further down the file - can
+   also call it. This was the cause of the "wrapAccordion is not defined"
+   console error that fired on every page load. */
+function wrapAccordion(containerId,title,sub,icon,open){
+  var el=document.getElementById(containerId); if(!el||!el.innerHTML.trim())return;
+  var raw=el.innerHTML;
+  // Extract blog link from sub if encoded as |||href|||color|||bg|||border|||label
+  var linkHtml='';
+  var linkMatch=sub.match(/\|\|\|(.+?)\|\|\|(.+?)\|\|\|(.+?)\|\|\|(.+?)\|\|\|(.+?)\|\|\|END/);
+  if(linkMatch){sub=sub.replace(/\|\|\|.+?\|\|\|END/,'');linkHtml='<a href="'+linkMatch[1]+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:'+linkMatch[2]+';font-weight:600;background:'+linkMatch[3]+';border:1px solid '+linkMatch[4]+';border-radius:6px;padding:5px 12px;text-decoration:none;cursor:pointer;white-space:nowrap;flex-shrink:0">'+linkMatch[5]+' ↗</a>';}
+  el.innerHTML='<details class="consumer-accordion" '+(open?'open':'')+'><summary><div style="display:flex;align-items:center;gap:11px"><div class="acc-icon">'+icon+'</div><div><div class="acc-title">'+title+'</div><div class="acc-sub">'+sub+'</div></div></div>'+(linkHtml?'<div style="flex:1"></div>'+linkHtml:'')+'<div class="acc-chevron"></div></summary><div class="acc-body">'+raw+'</div></details>';
+}
 (function(){
   function areaName(area){
     return (AREA_LABELS_MAP[area]||area).replace(/ - .*/,'').replace(/\(.*$/,'').trim();
@@ -2501,15 +2809,8 @@ function buildAndPrintCompare(){
       '</div><div class="est-bar"><span style="width:'+width.toFixed(0)+'%"></span></div><div style="display:flex;justify-content:space-between;margin-top:4px"><span class="est-note">Purchase '+money(paid)+'</span><span class="est-note">Today '+money(est)+'</span></div>';
   }
 
-  function wrapAccordion(containerId,title,sub,icon,open){
-    var el=document.getElementById(containerId); if(!el||!el.innerHTML.trim())return;
-    var raw=el.innerHTML;
-    // Extract blog link from sub if encoded as |||href|||color|||bg|||border|||label
-    var linkHtml='';
-    var linkMatch=sub.match(/\|\|\|(.+?)\|\|\|(.+?)\|\|\|(.+?)\|\|\|(.+?)\|\|\|(.+?)\|\|\|END/);
-    if(linkMatch){sub=sub.replace(/\|\|\|.+?\|\|\|END/,'');linkHtml='<a href="'+linkMatch[1]+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:'+linkMatch[2]+';font-weight:600;background:'+linkMatch[3]+';border:1px solid '+linkMatch[4]+';border-radius:6px;padding:5px 12px;text-decoration:none;cursor:pointer;white-space:nowrap;flex-shrink:0">'+linkMatch[5]+' ↗</a>';}
-    el.innerHTML='<details class="consumer-accordion" '+(open?'open':'')+'><summary><div style="display:flex;align-items:center;gap:11px"><div class="acc-icon">'+icon+'</div><div><div class="acc-title">'+title+'</div><div class="acc-sub">'+sub+'</div></div></div>'+(linkHtml?'<div style="flex:1"></div>'+linkHtml:'')+'<div class="acc-chevron"></div></summary><div class="acc-body">'+raw+'</div></details>';
-  }
+  /* wrapAccordion now defined at top-level scope above, so it's reachable
+     from the Plan My Move IIFE too. */
 
   function healthSub(area){
     var sig=calcHealthSignals(area)||[], c={red:0,amber:0,green:0};
@@ -3058,6 +3359,7 @@ function buildAndPrintCompare(){
               '<div class="planner-field"><label for="plSellType">Your home type</label><select id="plSellType"></select></div>'+
               '<div class="planner-field"><label for="plYear">Year you bought</label><select id="plYear"></select></div>'+
               '<div class="planner-field"><label for="plPaid">What you paid (approx.)</label><input id="plPaid" value="$500,000" inputmode="decimal" placeholder="e.g. $500,000"></div>'+
+              '<div class="planner-field" style="grid-column:1/-1"><label for="plMortgage">Remaining mortgage balance today (approx.)</label><input id="plMortgage" value="" inputmode="decimal" placeholder="e.g. $350,000 - leave blank if mortgage-free"><span style="display:block;font-size:11.5px;color:var(--muted);margin-top:5px">Not sure? Your bank, mortgage statement, or lender can tell you the current payoff balance in a couple of minutes.</span></div>'+
             '</div>'+
             '<button class="pl-continue-btn" id="plannerStep2Btn" type="button">Continue <span id="pl2BtnSuffix">\u2192 Step 3: Where to next</span></button>'+
           '</div>'+
@@ -3111,7 +3413,7 @@ function buildAndPrintCompare(){
           '</div>'+
         '</div>'+
 
-        '<details class="planner-assumptions"><summary>How this estimate works</summary><div>This tool uses published market averages or MLS HPI benchmark movement for the selected city and home type. It is not an appraisal of a specific property. Mortgage payment is illustrative only and excludes taxes, condo fees, insurance, closing costs, mortgage insurance, moving costs, and selling costs.</div></details>'+
+        '<div class="planner-assumptions-static"><div class="pa-label">How this estimate works</div><div>We start from the average sale price for your city and home type, then use published market data to show how prices there have changed. This is not an appraisal of your actual home \u2014 it doesn\u2019t know your renovations, lot size, or condition. The monthly payment estimate only covers the loan itself (principal and interest). It does not include property tax, condo fees, insurance, or one-time costs like closing and moving.</div></div>'+
       '</div>'+
       '<div id="plannerHealth" style="margin-top:18px"></div>'+
       '<div id="plannerEco" style="margin-top:14px"></div>'+
@@ -3154,9 +3456,10 @@ function buildAndPrintCompare(){
   function pl_hideBlock(id){var el=document.getElementById(id);if(el)el.classList.add('pl-block-hidden');}
 
   function updatePlanner(){
-    var sa=document.getElementById('plSellArea'),st=document.getElementById('plSellType'),yr=document.getElementById('plYear'),pp=document.getElementById('plPaid');
+    var sa=document.getElementById('plSellArea'),st=document.getElementById('plSellType'),yr=document.getElementById('plYear'),pp=document.getElementById('plPaid'),mb=document.getElementById('plMortgage');
     if(!sa||!st||!yr||!pp)return;
     var sellArea=sa.value,sellType=st.value,year=parseInt(yr.value,10)||2016,paid=parseMoney(pp.value);
+    var mortgageBal=mb?parseMoney(mb.value):0;
     var sellRows=annualRows(sellArea,sellType);
     var base=sellRows.find(function(x){return x.row.year===year;});
     var latestSell=sellRows[sellRows.length-1];
@@ -3169,17 +3472,17 @@ function buildAndPrintCompare(){
     var estimate=paid*(latestSell.price/base.price);
     var gain=estimate-paid;
     var growth=(latestSell.price/base.price-1)*100;
+    var netAfterMortgage=estimate-mortgageBal;
 
     if(plannerCurrentPreset==='check'){
       out.innerHTML=
         '<h3 style="color:#062b55;margin-bottom:10px">What your home might be worth today</h3>'+
         '<div class="planner-result-grid">'+
-          '<div class="planner-result-card highlight"><div class="pr-label">Approx. value today</div><div class="pr-value">'+money(estimate)+'</div><div class="pr-note">Based on '+areaName(sellArea)+' '+sellType+' market movement since '+year+'</div></div>'+
-          '<div class="planner-result-card"><div class="pr-label">Estimated gain</div><div class="pr-value">'+money(gain)+'</div><div class="pr-note">'+pct(growth)+' growth since you paid '+money(paid)+'</div></div>'+
-          '<div class="planner-result-card"><div class="pr-label">Data as of</div><div class="pr-value">'+(latestSell.row.ym?ymLabel(latestSell.row.ym):latestSell.row.year)+'</div><div class="pr-note">Most recent TRREB published data</div></div>'+
-          '<div class="planner-result-card"><div class="pr-label">Purpose</div><div class="pr-value">Guide</div><div class="pr-note">A directional estimate \u2014 not a formal appraisal of your specific home</div></div>'+
+          '<div class="planner-result-card highlight"><div class="pr-label">Your home\u2019s value today</div><div class="pr-value">'+money(estimate)+'</div><div class="pr-note">Based on how '+areaName(sellArea)+' '+sellType+' prices have moved since '+year+'</div></div>'+
+          '<div class="planner-result-card"><div class="pr-label">What you\u2019ve gained</div><div class="pr-value">'+money(gain)+'</div><div class="pr-note">Up '+pct(growth)+' since you paid '+money(paid)+'</div></div>'+
+          '<div class="planner-result-card highlight"><div class="pr-label">Cash in your pocket if you sell</div><div class="pr-value">'+money(netAfterMortgage)+'</div><div class="pr-note">'+(mortgageBal>0?'Value today minus the '+money(mortgageBal)+' you still owe, before selling costs':'Full value today \u2014 you told us you don\u2019t owe anything on this home. Add what you still owe above for a closer number.')+'</div></div>'+
         '</div>'+
-        '<div class="planner-disclaimer">Important: this is an area average, not a valuation of your specific home. Renovations, lot, condition, basement, exact street, and comparable sales can move your real number materially.</div>'+
+        '<div class="planner-disclaimer">This is a rough guide based on average prices in your area \u2014 not an appraisal of your exact home. Your renovations, lot, condition, and street can change the real number. Based on data through '+(latestSell.row.ym?ymLabel(latestSell.row.ym):latestSell.row.year)+'.'+(mortgageBal>0?' This number doesn\u2019t yet include realtor commission, legal fees, or other selling costs.':'')+'</div>'+
         '<div style="background:linear-gradient(135deg,#062b55,#1B4F8A);border-radius:4px;padding:16px 18px;margin-top:14px">'+
           '<div style="font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#74c7ee;margin-bottom:5px">Want the real number?</div>'+
           '<p style="color:#fff;font-size:13px;font-weight:700;margin:0 0 3px">Area averages are a starting point. Your actual value depends on renovations, lot size, condition, and what has recently sold on your street.</p>'+
@@ -3211,18 +3514,16 @@ function buildAndPrintCompare(){
     out.innerHTML=
       '<h3 style="color:#062b55;margin-bottom:10px">Your rough sell-and-buy picture</h3>'+
       '<div class="planner-result-grid">'+
-        '<div class="planner-result-card highlight"><div class="pr-label">Approx. selling value today</div><div class="pr-value">'+money(estimate)+'</div><div class="pr-note">'+areaName(sellArea)+' \u00b7 '+sellType+' \u00b7 since '+year+'</div></div>'+
-        '<div class="planner-result-card"><div class="pr-label">Estimated gain</div><div class="pr-value">'+money(gain)+'</div><div class="pr-note">'+pct(growth)+' from your purchase price</div></div>'+
-        '<div class="planner-result-card"><div class="pr-label">Approx. price to buy</div><div class="pr-value">'+money(latestBuy.price)+'</div><div class="pr-note">'+areaName(buyArea)+' \u00b7 '+buyType+' \u00b7 latest avg/benchmark</div></div>'+
-        '<div class="planner-result-card"><div class="pr-label">'+(gap>0?'Gap to bridge':'Surplus')+'</div><div class="pr-value">'+money(Math.abs(gap))+'</div><div class="pr-note">'+(gap>0?'Still needed after selling costs \u0026 payoff':'Your estimate exceeds the target price')+'</div></div>'+
+        '<div class="planner-result-card highlight"><div class="pr-label">What your current home might sell for</div><div class="pr-value">'+money(estimate)+'</div><div class="pr-note">'+areaName(sellArea)+' \u00b7 '+sellType+' \u00b7 since '+year+'</div></div>'+
+        '<div class="planner-result-card highlight"><div class="pr-label">Cash in your pocket after selling</div><div class="pr-value">'+money(netAfterMortgage)+'</div><div class="pr-note">'+(mortgageBal>0?'Selling value minus the '+money(mortgageBal)+' you still owe, before selling costs':'Full selling value \u2014 you told us you don\u2019t owe anything on this home. Add what you still owe above for a closer number.')+'</div></div>'+
+        '<div class="planner-result-card"><div class="pr-label">What the new home might cost</div><div class="pr-value">'+money(latestBuy.price)+'</div><div class="pr-note">'+areaName(buyArea)+' \u00b7 '+buyType+' \u00b7 latest price</div></div>'+
+        '<div class="planner-result-card"><div class="pr-label">'+(gap>0?'Extra money you\u2019d still need':'Money you\u2019d have left over')+'</div><div class="pr-value">'+money(Math.abs(gap))+'</div><div class="pr-note">'+(gap>0?'After your selling costs and mortgage payoff':'Your home\u2019s value covers the new purchase price')+'</div></div>'+
       '</div>'+
       '<div class="planner-result-grid" style="margin-top:9px">'+
-        '<div class="planner-result-card"><div class="pr-label">Illustrative payment</div><div class="pr-value">'+dollars(pay)+'</div><div class="pr-note">Monthly P+I \u00b7 '+down+'% down \u00b7 '+rate.toFixed(2)+'% \u00b7 25 yrs</div></div>'+
-        '<div class="planner-result-card"><div class="pr-label">Sell-side data</div><div class="pr-value">'+latestSell.row.year+'</div><div class="pr-note">Annual TRREB data through latest available year</div></div>'+
-        '<div class="planner-result-card"><div class="pr-label">Buy-side data</div><div class="pr-value">'+(latestBuy.row.ym?ymLabel(latestBuy.row.ym):latestBuy.row.year)+'</div><div class="pr-note">Latest published TRREB avg/benchmark</div></div>'+
-        '<div class="planner-result-card"><div class="pr-label">Purpose</div><div class="pr-value">Guide</div><div class="pr-note">A starting point for a proper sell-and-buy conversation</div></div>'+
+        '<div class="planner-result-card"><div class="pr-label">Estimated monthly payment</div><div class="pr-value">'+dollars(pay)+'</div><div class="pr-note">Principal and interest only \u00b7 '+down+'% down \u00b7 '+rate.toFixed(2)+'% rate \u00b7 25 years</div></div>'+
+        '<div class="planner-result-card"><div class="pr-label">Estimated gain on your current home</div><div class="pr-value">'+money(gain)+'</div><div class="pr-note">Up '+pct(growth)+' from what you paid</div></div>'+
       '</div>'+
-      '<div class="planner-disclaimer">These are area averages, not a valuation of your specific home. Renovations, lot, condition, basement income, exact street, timing, and comparable sales can change the real number materially.</div>'+
+      '<div class="planner-disclaimer">These are area averages, not a valuation of your specific home. Renovations, lot, condition, a finished basement, the exact street, and timing can all change your real number. Sell-side figures use annual data through '+latestSell.row.year+'; buy-side figures use the latest published data through '+(latestBuy.row.ym?ymLabel(latestBuy.row.ym):latestBuy.row.year)+'. This is a starting point for a conversation, not a formal appraisal.'+(mortgageBal>0?' Net proceeds shown don\u2019t yet include realtor commission, legal fees, or other selling costs.':'')+'</div>'+
       '<div style="background:linear-gradient(135deg,#062b55,#1B4F8A);border-radius:4px;padding:16px 18px;margin:14px 0 8px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center">'+
         '<div>'+
           '<div style="font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#74c7ee;margin-bottom:5px">What does this mean for you?</div>'+
@@ -3363,6 +3664,7 @@ function buildAndPrintCompare(){
         pl_updateProgress(2);
         ['plannerBlock3','plannerBlock4','plannerCtaBlock','plannerLead'].forEach(pl_hideBlock);
         pl_showBlock('plannerBlock2');
+        setTimeout(renderPlannerContextSections,50);
         return;
       }
 
@@ -3392,12 +3694,13 @@ function buildAndPrintCompare(){
       }
 
       /* Step 2 continue */
-      if(e.target&&e.target.id==='plannerStep2Btn'){
+      if(e.target&&e.target.closest('#plannerStep2Btn')){
         if(plannerCurrentPreset==='check'){
           pl_updateProgress(4);
           pl_showBlock('plannerBlock4');
           pl_showBlock('plannerCtaBlock');
           updatePlanner();
+          setTimeout(renderPlannerContextSections,50);
         } else {
           var d=moveDefaults(plannerCurrentPreset);
           var ba=document.getElementById('plBuyArea'),bt=document.getElementById('plBuyType');
@@ -3411,11 +3714,12 @@ function buildAndPrintCompare(){
       }
 
       /* Step 3 continue */
-      if(e.target&&e.target.id==='plannerStep3Btn'){
+      if(e.target&&e.target.closest('#plannerStep3Btn')){
         pl_updateProgress(4);
         pl_showBlock('plannerBlock4');
         pl_showBlock('plannerCtaBlock');
         updatePlanner();
+        setTimeout(renderPlannerContextSections,50);
         return;
       }
 
@@ -3436,6 +3740,11 @@ function buildAndPrintCompare(){
       if(pBtn){
         e.stopPropagation();
         showPanels('planner');
+        if(!document.getElementById('plSellArea').value){
+          pl_setValues(moveDefaults(plannerCurrentPreset));
+          pl_refreshYears();
+          setTimeout(renderPlannerContextSections,50);
+        }
         return;
       }
     });
@@ -3638,6 +3947,7 @@ function buildAndPrintCompare(){
       if(tip)return tip;
       tip=document.createElement('div');
       tip.className='spark-tip';
+      tip.style.display='none';
       document.body.appendChild(tip);
       return tip;
     }
@@ -3690,6 +4000,7 @@ function buildAndPrintCompare(){
       var labels=svg.dataset.labels?svg.dataset.labels.split('|'):null;
       var unit=svg.dataset.unit||'';
       var card=svg.closest('.health-card');
+      var hoverLine=svg.querySelector('.spark-hover-line');
       svg.addEventListener('mousemove',function(ev){
         var rect=svg.getBoundingClientRect();
         var px=(ev.clientX-rect.left)/rect.width*100;
@@ -3709,19 +4020,26 @@ function buildAndPrintCompare(){
         var t=getTip();
         var val=(vals&&realIdx>=0&&vals[realIdx]!=null)?vals[realIdx]:null;
         var lbl=(labels&&realIdx>=0)?labels[realIdx]:'';
-        if(val==null){t.classList.remove('show');return;}
+        if(val==null){t.classList.remove('show');t.style.display='none';if(hoverLine)hoverLine.style.opacity='0';return;}
         t.style.padding='';
         var valStr=fmtNumber(val,unit);
         t.innerHTML=(lbl?'<div style="font-size:10px;opacity:.75;font-weight:600;margin-bottom:2px;text-align:right">'+fmtDateLabel(lbl)+'</div>':'')+'<div style="font-size:14px;font-weight:500;text-align:right">'+valStr+'</div>';
+        t.style.display='block';
         var svgRect=svg.getBoundingClientRect();
-        var dotX=svgRect.left+window.scrollX+(best.x/100)*svgRect.width;
-        var dotY=svgRect.top+window.scrollY+(best.y/30)*svgRect.height;
-        t.style.left=dotX+'px';
-        t.style.top=dotY+'px';
+        var dotX=svgRect.left+(best.x/100)*svgRect.width;
+        var dotY=svgRect.top+(best.y/30)*svgRect.height;
+        var gap=14;
+        var tw=t.offsetWidth;
+        var left=dotX-tw-gap;
+        if(left<8)left=dotX+gap;
+        t.style.left=left+'px';
+        t.style.top=(dotY-t.offsetHeight-8)+'px';
         t.classList.add('show');
+        if(hoverLine){hoverLine.setAttribute('x1',best.x);hoverLine.setAttribute('x2',best.x);hoverLine.style.opacity='0.55';}
       });
       svg.addEventListener('mouseleave',function(){
-        if(tip)tip.classList.remove('show');
+        if(tip){tip.classList.remove('show');tip.style.display='none';}
+        if(hoverLine)hoverLine.style.opacity='0';
       });
     }
     // ── COMPARE HEALTH CHARTS (multi-line) ──
@@ -3756,10 +4074,11 @@ function buildAndPrintCompare(){
         var mi=parseInt(p[1],10)-1;
         return (months[mi]||p[1])+' '+p[0].slice(2);
       }
+      var hoverLine=svg.querySelector('.cmphc-hover-line');
       svg.addEventListener('mousemove',function(ev){
         var rect=svg.getBoundingClientRect();
         var px=(ev.clientX-rect.left)/rect.width;
-        if(px<0||px>1){if(tip)tip.classList.remove('show');return;}
+        if(px<0||px>1){if(tip){tip.classList.remove('show');tip.style.display='none';}if(hoverLine)hoverLine.style.opacity='0';return;}
         // Determine index in data based on position
         var n=seriesData[0].vals.length;
         var idx=Math.round(px*(n-1));
@@ -3773,16 +4092,27 @@ function buildAndPrintCompare(){
         var t=getTip();
         t.style.padding='8px 11px';
         t.innerHTML='<div style="font-size:11px;font-weight:700;opacity:.85;margin-bottom:2px;text-align:right">'+lbl+'</div>'+rows;
-        var dotX=rect.left+window.scrollX+px*rect.width;
-        var dotY=rect.top+window.scrollY+rect.height*.5;
-        t.style.left=dotX+'px';
-        t.style.top=dotY+'px';
+        t.style.display='block';
+        var dotX=rect.left+px*rect.width;
+        var dotY=rect.top+rect.height*.5;
+        var gap=14;
+        var tw=t.offsetWidth;
+        var left=dotX-tw-gap;
+        if(left<8)left=dotX+gap;
+        t.style.left=left+'px';
+        t.style.top=(dotY-t.offsetHeight/2)+'px';
         t.classList.add('show');
+        if(hoverLine){
+          var vbW=(svg.viewBox&&svg.viewBox.baseVal&&svg.viewBox.baseVal.width)||460;
+          var lx=px*vbW;
+          hoverLine.setAttribute('x1',lx);hoverLine.setAttribute('x2',lx);hoverLine.style.opacity='0.55';
+        }
       });
       svg.addEventListener('mouseleave',function(){
-        if(tip)tip.classList.remove('show');
+        if(tip){tip.classList.remove('show');tip.style.display='none';}
         // Reset tooltip padding for sparklines
         if(tip)tip.style.padding='';
+        if(hoverLine)hoverLine.style.opacity='0';
       });
     }
     // Watch for new sparklines being added
